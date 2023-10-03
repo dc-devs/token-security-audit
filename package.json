@@ -1,7 +1,6 @@
 {
   "name": "crypto-trading-bot",
   "module": "index.ts",
-  "type": "module",
   "scripts": {
     "start": "bun src/start.ts"
   },
@@ -13,6 +12,8 @@
     "typescript": "^5.0.0"
   },
   "dependencies": {
+    "@de-fi/sdk": "^2.1.12",
+    "@goplus/sdk-node": "^1.0.9",
     "dotenv": "^16.3.1",
     "ethers": "^6.7.1"
   }
