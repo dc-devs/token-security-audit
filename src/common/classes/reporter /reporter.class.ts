@@ -1,5 +1,5 @@
 import { ethers } from 'ethers';
-import { UniswapV2Erc20 } from '../uniswap-v2/uniswap-v2-erc-20';
+import { UniswapV2Erc20 } from '../../../uniswap-v2/uniswap-v2-erc-20';
 
 interface ILogTokenPairOptions {
 	token0: UniswapV2Erc20;

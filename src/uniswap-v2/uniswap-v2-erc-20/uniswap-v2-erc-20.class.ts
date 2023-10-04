@@ -1,6 +1,6 @@
-import { ethers } from '../../ethers';
+import { ethers } from '../../common/classes/ethers';
 import { ethers as ethersJs } from 'ethers';
-import { UniswapV2Erc20Abi } from '../../../abis/uniswap-v2';
+import { UniswapV2Erc20Abi } from '../../common/abis/uniswap-v2';
 
 interface IConstructorOptions {
 	address: string;

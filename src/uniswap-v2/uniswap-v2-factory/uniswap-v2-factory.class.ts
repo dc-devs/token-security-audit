@@ -1,11 +1,9 @@
-import { ethers } from '../../ethers';
-// import { createClient } from '@de-fi/sdk';
-// @ts-ignore
-import { GoPlus, ErrorCode } from '@goplus/sdk-node';
+import { Security } from '../../security';
 import { ethers as ethersJs } from 'ethers';
-import { UniswapV2FactoryAbi } from '../../../abis/uniswap-v2';
-import { UniswapV2Address, UniswapV2FactoryEvent } from '../../../enums';
-import { Reporter, UniswapV2Pair, UniswapV2Erc20 } from '../../../classes';
+import { ethers } from '../../common/classes/ethers';
+import { UniswapV2FactoryAbi } from '../../common/abis/uniswap-v2';
+import { UniswapV2Address, UniswapV2FactoryEvent } from '../../common/enums';
+import { Reporter, UniswapV2Pair, UniswapV2Erc20 } from '../../common/classes';
 
 class UniswapV2Factory {
 	abi: any[];
@@ -55,25 +53,32 @@ class UniswapV2Factory {
 				console.log(token1);
 
 				// Fetch pair details
-				// const uniswapV2Pair = await new UniswapV2Pair({
-				// 	address: pairAddress,
-				// }).init();
+				const uniswapV2Pair = await new UniswapV2Pair({
+					address: pairAddress,
+				}).init();
 
-				// // Fetch liquidity details
-				// const reserves = await uniswapV2Pair.contract.getReserves();
-				// const { reserve0, reserve1 } = reserves;
+				// Fetch liquidity details
+				const reserves = await uniswapV2Pair.contract.getReserves();
+				const { reserve0, reserve1 } = reserves;
 
-				// // TODO: Pull this out so this methods returns this data
-				// // Gloobal Store, PubSub?
-				// // Log data to console
-				// const reporter = new Reporter();
-				// reporter.logTokenPair({
-				// 	token0,
-				// 	token1,
-				// 	reserve0,
-				// 	reserve1,
-				// 	pairAddress,
-				// });
+				// TODO: Pull this out so this methods returns this data
+				// Gloobal Store, PubSub?
+				// Log data to console
+				const reporter = new Reporter();
+				reporter.logTokenPair({
+					token0,
+					token1,
+					reserve0,
+					reserve1,
+					pairAddress,
+				});
+
+				const security = new Security({
+					chainId: '1',
+					address: token0Address,
+				});
+				await security.runGoPlusSecurityAudit();
+				security.displayResults();
 			},
 		);
 	}
