@@ -1,13 +1,13 @@
-import { ethers } from '../../common/classes/ethers';
 import { ethers as ethersJs } from 'ethers';
-import { UniswapV2Erc20Abi } from '../../common/abis/uniswap-v2';
+import { ethers } from '../../../../common/util-classes/ethers';
+import { UniswapV2Erc20Abi } from '../../../../common/abis/uniswap-v2';
 
 interface IConstructorOptions {
 	address: string;
 }
 
 class UniswapV2Erc20 {
-	abi: string[];
+	abi: any[];
 	address: string;
 	name?: string;
 	symbol?: string;
@@ -29,8 +29,11 @@ class UniswapV2Erc20 {
 	}
 
 	async init() {
-		this.name = await this.contract.name();
-		this.symbol = await this.contract.symbol();
+		const name = await this.contract.name();
+		const symbol = await this.contract.symbol();
+
+		this.name = name.trim();
+		this.symbol = symbol.trim();
 
 		return this;
 	}

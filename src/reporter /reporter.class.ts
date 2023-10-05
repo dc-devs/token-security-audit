@@ -1,5 +1,5 @@
 import { ethers } from 'ethers';
-import { UniswapV2Erc20 } from '../../../uniswap-v2/uniswap-v2-erc-20';
+import { UniswapV2Erc20 } from '../token-pair-tracker/ethereum/uniswap-v2/uniswap-v2-erc-20';
 
 interface ILogTokenPairOptions {
 	token0: UniswapV2Erc20;
@@ -40,6 +40,7 @@ class Reporter {
 			`https://www.dextools.io/app/en/ether/pair-explorer/${pairAddress}`,
 		);
 		console.log(`----------------------------------`);
+		console.log(``);
 	}
 }
 

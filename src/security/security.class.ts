@@ -14,37 +14,39 @@ import { ISecurityResults } from './common/interfaces';
 
 interface IConstructorOptions {
 	chainId: string;
-	address: string;
 }
 
 class Security {
 	chainId: string;
-	address: string;
 	results: Record<string, ISecurityResults>;
 
-	constructor({ chainId, address }: IConstructorOptions) {
+	constructor({ chainId }: IConstructorOptions) {
 		this.chainId = chainId;
-		this.address = address;
 		this.results = {};
 	}
 
-	async runGoPlusSecurityAudit() {
+	async runGoPlusSecurityAudit({ address }: { address: string }) {
 		// It will only return 1 result for the 1st token address if not called getAccessToken before
 		const response = await GoPlus.tokenSecurity(
 			this.chainId,
-			[this.address],
+			[address],
 			30,
 		);
 
 		if (response.code != ErrorCode.SUCCESS) {
 			console.error(response.message);
 		} else {
-			const securityResults = response.result[this.address];
-			const adaptedSecurityResultls = goPlusAdapter({
-				securityResults: securityResults,
-			});
+			const securityResults = response.result[address];
 
-			this.results.goPlus = adaptedSecurityResultls;
+			if (securityResults) {
+				const adaptedSecurityResultls = goPlusAdapter({
+					securityResults,
+				});
+
+				this.results.goPlus = adaptedSecurityResultls;
+			} else {
+				console.error('No security results:', response);
+			}
 		}
 	}
 
