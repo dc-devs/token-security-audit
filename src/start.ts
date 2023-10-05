@@ -1,5 +1,6 @@
 import { Security } from './security';
 import { Reporter } from './reporter ';
+import { PubSubEvent } from './common/enums';
 import { pubSub } from './common/util-classes';
 import { TokenPairTracker } from './token-pair-tracker';
 
@@ -9,7 +10,7 @@ const tokenPairTracker = new TokenPairTracker();
 tokenPairTracker.start();
 
 pubSub.on(
-	'newTokenPairCreated',
+	PubSubEvent.NewTokenPairCreated,
 	({ token0, token1, reserve0, reserve1, pairAddress }) => {
 		reporter.logTokenPair({
 			token0,

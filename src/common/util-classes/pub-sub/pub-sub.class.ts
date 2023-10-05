@@ -1,9 +1,11 @@
+import { PubSubEvent } from '../../enums';
+
 class PubSub {
-	eventMap = {} as Record<string, Set<(...args: any[]) => void>>;
+	eventMap = {} as Record<PubSubEvent, Set<(...args: any[]) => void>>;
 
 	constructor() {}
 
-	on(event: string, callback: (...args: any[]) => void) {
+	on(event: PubSubEvent, callback: (...args: any[]) => void) {
 		if (!this.eventMap[event]) {
 			// create a new set
 			this.eventMap[event] = new Set();
@@ -12,7 +14,7 @@ class PubSub {
 		this.eventMap[event].add(callback);
 	}
 
-	off(event: string, callback: (...args: any[]) => void) {
+	off(event: PubSubEvent, callback: (...args: any[]) => void) {
 		if (!this.eventMap[event]) {
 			return;
 		}
@@ -20,7 +22,7 @@ class PubSub {
 		this.eventMap[event].delete(callback);
 	}
 
-	emit(event: string, ...args: any[]) {
+	emit(event: PubSubEvent, ...args: any[]) {
 		if (!this.eventMap[event]) {
 			return;
 		}
