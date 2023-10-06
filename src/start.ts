@@ -3,15 +3,17 @@ import { Reporter } from './reporter ';
 import { PubSubEvent } from './common/enums';
 import { pubSub } from './common/util-classes';
 import { TokenPairTracker } from './token-pair-tracker';
+import { selectNewToken } from './common/utils';
 
 const reporter = new Reporter();
 const tokenPairTracker = new TokenPairTracker();
 
+// emits: PubSubEvent.NewTokenPairCreated
 tokenPairTracker.start();
 
 pubSub.on(
 	PubSubEvent.NewTokenPairCreated,
-	({ token0, token1, reserve0, reserve1, pairAddress }) => {
+	async ({ token0, token1, reserve0, reserve1, pairAddress }) => {
 		reporter.logTokenPair({
 			token0,
 			token1,
@@ -19,17 +21,18 @@ pubSub.on(
 			reserve1,
 			pairAddress,
 		});
+
+		// security results
+		const security = new Security({
+			chainId: '1',
+		});
+
+		const newToken = selectNewToken({ token0, token1 });
+
+		await security.runGoPlusSecurityAudit({
+			address: newToken.address,
+		});
+
+		security.displayResults();
 	},
 );
-
-// security results
-// const security = new Security({
-// 	chainId: '1',
-// });
-// await security.runGoPlusSecurityAudit({
-// 	address: token0Address,
-// });
-// await security.runGoPlusSecurityAudit({
-// 	address: token1Address,
-// });
-// security.displayResults();

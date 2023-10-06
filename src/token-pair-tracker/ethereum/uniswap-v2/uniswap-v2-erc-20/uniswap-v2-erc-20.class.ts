@@ -18,7 +18,7 @@ class UniswapV2Erc20 {
 
 		this.abi = abi;
 
-		this.address = address;
+		this.address = address.toLowerCase();
 
 		this.contract = ethers.contract({
 			abi,
