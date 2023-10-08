@@ -1,9 +1,9 @@
 import { Security } from './security';
-import { Reporter } from './reporter ';
+import { Reporter } from './reporter';
 import { PubSubEvent } from './common/enums';
 import { pubSub } from './common/util-classes';
-import { TokenPairTracker } from './token-pair-tracker';
 import { selectNewToken } from './common/utils';
+import { TokenPairTracker } from './token-pair-tracker';
 
 const reporter = new Reporter();
 const tokenPairTracker = new TokenPairTracker();
@@ -27,6 +27,7 @@ pubSub.on(
 			chainId: '1',
 		});
 
+		// TODO: check that one token is weth
 		const newToken = selectNewToken({ token0, token1 });
 
 		await security.runGoPlusSecurityAudit({

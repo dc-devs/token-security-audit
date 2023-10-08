@@ -92,7 +92,7 @@ const goPlusAdapter = ({ securityResults }: IOptions): ISecurityResults => {
 			// isSellingAvailable:
 			canUserSellAll: cannot_sell_all === '1',
 			canTaxBeModdified: slippage_modifiable === '1',
-			canUserTaxBeModifiedd: personal_slippage_modifiable === '1',
+			canUserTaxBeModified: personal_slippage_modifiable === '1',
 			isTransferPausable: transfer_pausable === '1',
 			hasBlacklist: is_blacklisted === '1',
 			hasWhitelist: is_whitelisted === '1',
