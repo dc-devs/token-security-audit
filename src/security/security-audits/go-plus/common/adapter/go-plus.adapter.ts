@@ -1,5 +1,5 @@
-import { ISecurityAudit } from '../../common/interfaces';
-import { defaultSecurityResults } from '../../../common/util-classes/defaults/default-templates';
+import { ISecurityAudit } from '../../../../common/interfaces';
+import { defaultSecurityResults } from '../../../../../common/util-classes/defaults/default-templates';
 
 interface IOptions {
 	securityResults: any;

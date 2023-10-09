@@ -1,8 +1,8 @@
-import { deFiResponse } from '../../../../defi/dexter-audit';
+import { deFiResponse } from '../../../../../../defi/dexter-audit';
 import { ICoreIssue } from './common/interfaces';
 import { coreIssueIdNameMap } from './common/constants';
-import { ISecurityAudit } from '../../common/interfaces';
-import { defaultSecurityResults } from '../../../common/util-classes/defaults/default-templates';
+import { ISecurityAudit } from '../../../../common/interfaces';
+import { defaultSecurityResults } from '../../../../../common/util-classes/defaults/default-templates';
 
 interface IOptions {
 	response: any;

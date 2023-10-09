@@ -1,5 +1,5 @@
 import { ErrorMessage } from './common/enums';
-import { goPlusAdapter } from '../../adapters';
+import { goPlusAdapter } from './common/adapter';
 // @ts-expect-error: Module does not have valid TS declaration file
 import { GoPlus, ErrorCode } from '@goplus/sdk-node';
 import { Defaults } from '../../../common/util-classes/defaults';
