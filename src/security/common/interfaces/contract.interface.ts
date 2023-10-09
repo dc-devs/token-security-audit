@@ -2,6 +2,7 @@ import { IResult } from './result.interface';
 
 interface IContract {
 	[key: string]: IResult;
+	// DeFi
 	hasVulnerableWithrawlFunction: IResult;
 	hasReeentrancy: IResult;
 	arelocksDetected: IResult;
@@ -38,6 +39,22 @@ interface IContract {
 	hasUnusualOnChainMarkers: IResult;
 	hasHighRevocations: IResult;
 	isInitializerProtected: IResult;
+	// GoPlus
+	isContractOpenSource: IResult;
+	isHoneyPot: IResult;
+	isHoneyPotWithSameCreator: IResult;
+	buyTax: IResult;
+	sellTax: IResult;
+	hasProxyContract: IResult;
+	isBuyingAvailable: IResult;
+	canUserSellAll: IResult;
+	canTaxBeModdified: IResult;
+	isAntiWhale: IResult;
+	isAntiWhaleModifiable: IResult;
+	hasTradingCoolDown: IResult;
+	isTrueToken: IResult;
+	isOnTrustList: IResult;
+	hasHiddenOwners: IResult;
 }
 
 export { IContract };

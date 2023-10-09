@@ -32,7 +32,9 @@ class Security {
 		address: string;
 	}): Promise<ISecurityResults> {
 		const formattedAddress = address.toLowerCase();
-		let adaptedSecurityResults: ISecurityResults = defaultSecurityResults;
+		let adaptedSecurityResults: ISecurityResults = {
+			...defaultSecurityResults,
+		};
 
 		// It will only return 1 result for the 1st token address if not called getAccessToken before
 		const response = await GoPlus.tokenSecurity(
@@ -66,7 +68,9 @@ class Security {
 		address: string;
 	}): Promise<ISecurityResults> {
 		const formattedAddress = address.toLowerCase();
-		let adaptedSecurityResults: ISecurityResults = defaultSecurityResults;
+		let adaptedSecurityResults: ISecurityResults = {
+			...defaultSecurityResults,
+		};
 		// const defiApiKey = process.env.DEFI_API_KEY;
 
 		// if (defiApiKey) {

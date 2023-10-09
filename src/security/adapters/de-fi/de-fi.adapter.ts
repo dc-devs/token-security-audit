@@ -5,7 +5,7 @@ import { ISecurityResults } from '../../common/interfaces';
 import { defaultSecurityResults } from '../../common/defaults';
 
 const deFiAdapter = (): ISecurityResults => {
-	const results: ISecurityResults = defaultSecurityResults;
+	const results: ISecurityResults = { ...defaultSecurityResults };
 	const { inProgress, estimatedAnalyzingTime, coreIssues } = deFiResponse.data
 		.project as any;
 

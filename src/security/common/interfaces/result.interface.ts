@@ -1,5 +1,5 @@
 interface IResult {
-	result: boolean;
+	result: boolean | null;
 	issues: any[];
 }
 
