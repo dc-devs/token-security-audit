@@ -8,6 +8,15 @@ import { IContract } from './contract.interface';
 import { ILiquidityProvider } from './liquidity-provider.interface';
 
 interface ISecurityResults {
+	[key: string]:
+		| IContract
+		| IHolders
+		| IDexData
+		| IToken
+		| IOther
+		| ILiquidityProvider
+		| IOwner
+		| ICreator;
 	contract: IContract;
 	holders: IHolders;
 	dexData: IDexData;

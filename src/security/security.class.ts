@@ -2,7 +2,7 @@
 import { GoPlus, ErrorCode } from '@goplus/sdk-node';
 import { createClient } from '@de-fi/sdk';
 import { goPlusAdapter, deFiAdapter } from './adapters';
-import { ISecurityResults } from './common/interfaces';
+import { ISecurityResults, IContract } from './common/interfaces';
 import { defaultSecurityResults } from './common/defaults';
 
 // Noting Honeypot data changes
@@ -71,38 +71,235 @@ class Security {
 		let adaptedSecurityResults: ISecurityResults = {
 			...defaultSecurityResults,
 		};
-		// const defiApiKey = process.env.DEFI_API_KEY;
+		const defiApiKey = process.env.DEFI_API_KEY;
 
-		// if (defiApiKey) {
-		// 	const client = createClient({
-		// 		url: 'https://public-api.de.fi/graphql/',
-		// 		headers: { 'X-Api-Key': defiApiKey },
-		// 	});
+		if (defiApiKey) {
+			const client = createClient({
+				url: 'https://public-api.de.fi/graphql/',
+				headers: { 'X-Api-Key': defiApiKey },
+			});
 
-		// 	const response = await client.query({
-		// 		scannerProject: [
-		// 			{
-		// 				where: {
-		//	 				chainId: 1,
-		// 					address: formattedAddress,
-		// 				},
-		// 			},
-		// 			{
-		// 				inProgress: true,
-		// 			},
-		// 		],
-		// 	});
-		// }
+			const response = await client.query({
+				scannerProject: [
+					{
+						where: {
+							chainId: 1,
+							address: formattedAddress,
+						},
+					},
+					{
+						id: true,
+						address: true,
+						network: true,
+						inProgress: true,
+						name: true,
+						contractName: true,
+						firstTxFrom: true,
+						firstTxDate: true,
+						firstTxBlock: true,
+						onChainScanned: true,
+						staticAnalizeScanned: true,
+						diffCheckScanned: true,
+						logo: true,
+						compilerVersion: true,
+						txCount: true,
+						initialFunder: true,
+						initialFunding: true,
+						outdatedCompiler: true,
+						scannedVersion: true,
+						scannerVersion: true,
+						protocol: true,
+						whitelisted: true,
+						estimatedAnalyzingTime: true,
+						rescanCount: true,
+						deploymentBlock: true,
+						sourceCodeLink: true,
+						link: true,
+						coreIssues: {
+							scwId: true,
+							scwTitle: true,
+							scwDescription: true,
+							issues: {
+								id: true,
+								confidence: true,
+								impact: true,
+								description: true,
+								start: true,
+								end: true,
+								data: true,
+								severityChanges: {
+									from: true,
+									to: true,
+									reason: true,
+								},
+								additionalData: {
+									title: true,
+									description: true,
+								},
+								governanceInfo: {
+									owners: {
+										type: true,
+										owner: true,
+										timelockDelay: true,
+									},
+									worstOwner: {
+										type: true,
+										owner: true,
+										timelockDelay: true,
+									},
+								},
+							},
+						},
+						generalIssues: {
+							scwId: true,
+							scwTitle: true,
+							scwDescription: true,
+							issues: {
+								id: true,
+								confidence: true,
+								impact: true,
+								description: true,
+								start: true,
+								end: true,
+								data: true,
+								severityChanges: {
+									from: true,
+									to: true,
+									reason: true,
+								},
+								additionalData: {
+									title: true,
+									description: true,
+								},
+								governanceInfo: {
+									owners: {
+										type: true,
+										owner: true,
+										timelockDelay: true,
+									},
+									worstOwner: {
+										type: true,
+										owner: true,
+										timelockDelay: true,
+									},
+								},
+							},
+						},
+						stats: {
+							low: true,
+							medium: true,
+							high: true,
+							critical: true,
+							total: true,
+							percentage: true,
+							scammed: true,
+						},
+						proxyData: {
+							proxyOwner: true,
+							sourceCodeLink: true,
+							proxyIssues: {
+								issues: {
+									id: true,
+									confidence: true,
+									impact: true,
+									description: true,
+									start: true,
+									end: true,
+									data: true,
+									severityChanges: {
+										from: true,
+										to: true,
+										reason: true,
+									},
+									additionalData: {
+										title: true,
+										description: true,
+									},
+									governanceInfo: {
+										owners: {
+											type: true,
+											owner: true,
+											timelockDelay: true,
+										},
+										worstOwner: {
+											type: true,
+											owner: true,
+											timelockDelay: true,
+										},
+									},
+								},
+							},
+							implementationData: {
+								firstTxFrom: true,
+								firstTxDate: true,
+								firstTxBlock: true,
+								name: true,
+								initialFunder: true,
+								initialFunding: true,
+							},
+						},
+						diffs: {
+							id: true,
+							address: true,
+							network: true,
+							name: true,
+							projectName: true,
+							score: true,
+							createdAt: true,
+						},
+					},
+				],
+			});
 
-		adaptedSecurityResults = deFiAdapter();
-
-		this.results.deFi = adaptedSecurityResults;
+			adaptedSecurityResults = deFiAdapter({ response });
+			this.results.deFi = adaptedSecurityResults;
+		}
 
 		return adaptedSecurityResults;
 	}
 
+	mergeSecurityAudits({
+		securityAudits,
+	}: {
+		securityAudits: Record<string, ISecurityResults>;
+	}) {
+		// LEFT OFF Write Merge code..
+		// After build class to analyze and try to build buying deciscion with,
+		// Or at least a percentage
+		// Maybe if no red flags autobuys
+		// if red flags alerts to look at to manually buy..
+		// ^^ maybe always manually buy to start..
+	}
+
+	async start({ address }: { address: string }) {
+		// Maybe make these functional..
+		// await this.runGoPlusSecurityAudit({ address });
+		await this.runDeFiSecurityAudit({ address });
+
+		// this.mergeSecurityAudits({ securityAudits: this.results });
+	}
+
 	displayResults() {
-		console.log(this.results);
+		const deFiResults = this.results.deFi;
+
+		Object.keys(this.results.deFi).forEach((key) => {
+			const value = deFiResults[key];
+
+			if (key === 'contract') {
+				console.log(key);
+				const contract = value as IContract;
+
+				Object.keys(contract).forEach((key) => {
+					const contractPropValue = contract[key];
+					console.log(`  ${key}`);
+
+					Object.keys(contractPropValue).forEach((key) => {
+						const contractPropValueSet = contractPropValue[key];
+						console.log('  ', key, '  ', contractPropValueSet);
+					});
+				});
+			}
+		});
 	}
 }
 

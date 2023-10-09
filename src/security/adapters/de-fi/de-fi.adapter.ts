@@ -1,13 +1,17 @@
-import { deFiResponse } from '../../../../defi/tmp';
+import { deFiResponse } from '../../../../defi/dexter-audit';
 import { ICoreIssue } from './common/interfaces';
 import { coreIssueIdNameMap } from './common/constants';
 import { ISecurityResults } from '../../common/interfaces';
 import { defaultSecurityResults } from '../../common/defaults';
 
-const deFiAdapter = (): ISecurityResults => {
+interface IOptions {
+	response: any;
+}
+
+const deFiAdapter = ({ response }: IOptions): ISecurityResults => {
 	const results: ISecurityResults = { ...defaultSecurityResults };
-	const { inProgress, estimatedAnalyzingTime, coreIssues } = deFiResponse.data
-		.project as any;
+	const { inProgress, estimatedAnalyzingTime, coreIssues } = response.data
+		.scannerProject as any;
 
 	if (Array.isArray(coreIssues)) {
 		coreIssues.forEach((deFiCoreIssue) => {

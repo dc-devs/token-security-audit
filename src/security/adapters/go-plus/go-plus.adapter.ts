@@ -96,7 +96,6 @@ const goPlusAdapter = ({ securityResults }: IOptions): ISecurityResults => {
 		address: creator_address,
 	};
 
-	// Probs still incomplete
 	adaptedSecurityResults.contract.isContractOpenSource = {
 		result: is_open_source === '1',
 		issues: [],

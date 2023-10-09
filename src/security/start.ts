@@ -5,7 +5,6 @@ const cliArgs = getCommandLineArguments();
 const { address } = cliArgs;
 const security = new Security({ chainId: '1' });
 
-await security.runGoPlusSecurityAudit({ address });
-await security.runDeFiSecurityAudit({ address });
+await security.start({ address });
 
 security.displayResults();
