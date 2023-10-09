@@ -7,7 +7,7 @@ import { IDexData } from './dex-data.interface';
 import { IContract } from './contract.interface';
 import { ILiquidityProvider } from './liquidity-provider.interface';
 
-interface ISecurityResults {
+interface ISecurityAudit {
 	[key: string]:
 		| IContract
 		| IHolders
@@ -27,4 +27,4 @@ interface ISecurityResults {
 	creator: ICreator;
 }
 
-export { ISecurityResults };
+export { ISecurityAudit };

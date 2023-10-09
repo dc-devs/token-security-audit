@@ -1,4 +1,4 @@
-import { IDexData } from '../interfaces';
+import { IDexData } from '../../../../security/common/interfaces';
 
 const defaultDexData: IDexData = {
 	isInDex: null,

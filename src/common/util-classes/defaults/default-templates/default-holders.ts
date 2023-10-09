@@ -1,4 +1,4 @@
-import { IHolders } from '../interfaces';
+import { IHolders } from '../../../../security/common/interfaces';
 
 const defaultHolders: IHolders = {
 	count: null,

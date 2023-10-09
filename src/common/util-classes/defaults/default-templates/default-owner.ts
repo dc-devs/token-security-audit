@@ -1,4 +1,4 @@
-import { IOwner } from '../interfaces';
+import { IOwner } from '../../../../security/common/interfaces';
 
 const defaultOwner: IOwner = {
 	changeBalance: null,

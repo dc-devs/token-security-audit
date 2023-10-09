@@ -1,15 +1,15 @@
 import { deFiResponse } from '../../../../defi/dexter-audit';
 import { ICoreIssue } from './common/interfaces';
 import { coreIssueIdNameMap } from './common/constants';
-import { ISecurityResults } from '../../common/interfaces';
-import { defaultSecurityResults } from '../../common/defaults';
+import { ISecurityAudit } from '../../common/interfaces';
+import { defaultSecurityResults } from '../../../common/util-classes/defaults/default-templates';
 
 interface IOptions {
 	response: any;
 }
 
-const deFiAdapter = ({ response }: IOptions): ISecurityResults => {
-	const results: ISecurityResults = { ...defaultSecurityResults };
+const deFiAdapter = ({ response }: IOptions): ISecurityAudit => {
+	const results: ISecurityAudit = { ...defaultSecurityResults };
 	const { inProgress, estimatedAnalyzingTime, coreIssues } = response.data
 		.scannerProject as any;
 

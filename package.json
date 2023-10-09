@@ -1,23 +1,24 @@
 {
-  "name": "crypto-trading-bot",
-  "module": "index.ts",
-  "scripts": {
-    "start": "bun src/start.ts",
-    "securityAudit": "bun src/security/start.ts"
-  },
-  "devDependencies": {
-    "bun-types": "latest",
-    "prettier": "^3.0.3"
-  },
-  "peerDependencies": {
-    "typescript": "^5.0.0"
-  },
-  "dependencies": {
-    "@de-fi/sdk": "^2.1.12",
-    "@goplus/sdk-node": "^1.0.9",
-    "@types/yargs": "^17.0.28",
-    "dotenv": "^16.3.1",
-    "ethers": "^6.7.1",
-    "yargs": "^17.7.2"
-  }
+	"name": "crypto-trading-bot",
+	"module": "index.ts",
+	"scripts": {
+		"start": "bun src/start.ts",
+		"securityAudit": "bun src/security/start.ts",
+		"goPlusSececurityAudit": "bun src/security/security-audits/go-plus/start.ts"
+	},
+	"devDependencies": {
+		"bun-types": "latest",
+		"prettier": "^3.0.3"
+	},
+	"peerDependencies": {
+		"typescript": "^5.0.0"
+	},
+	"dependencies": {
+		"@de-fi/sdk": "^2.1.12",
+		"@goplus/sdk-node": "^1.0.9",
+		"@types/yargs": "^17.0.28",
+		"dotenv": "^16.3.1",
+		"ethers": "^6.7.1",
+		"yargs": "^17.7.2"
+	}
 }

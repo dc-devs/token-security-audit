@@ -1,4 +1,4 @@
-import { ICreator } from '../interfaces';
+import { ICreator } from '../../../../security/common/interfaces';
 
 const defaultCreator: ICreator = {
 	balance: null,

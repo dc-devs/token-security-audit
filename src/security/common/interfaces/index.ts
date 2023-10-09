@@ -7,4 +7,4 @@ export { ICreator } from './creator.interface';
 export { IDexData } from './dex-data.interface';
 export { IContract } from './contract.interface';
 export { ILiquidityProvider } from './liquidity-provider.interface';
-export { ISecurityResults } from './security-results.interface';
+export { ISecurityAudit } from './security-audit.interface';

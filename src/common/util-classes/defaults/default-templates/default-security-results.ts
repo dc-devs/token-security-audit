@@ -6,9 +6,9 @@ import { defaultHolders } from './default-holders';
 import { defaultDexData } from './default-dex-data';
 import { defaultContract } from './default-contract';
 import { defaultLiquidityProvider } from './default-liquidity-provider';
-import { ISecurityResults } from '../interfaces/security-results.interface';
+import { ISecurityAudit } from '../../../../security/common/interfaces/security-audit.interface';
 
-const defaultSecurityResults: ISecurityResults = {
+const defaultSecurityResults: ISecurityAudit = {
 	token: defaultToken,
 	contract: defaultContract,
 	owner: defaultOwner,

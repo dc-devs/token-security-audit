@@ -1,12 +1,12 @@
-import { ISecurityResults } from '../../common/interfaces';
-import { defaultSecurityResults } from '../../common/defaults';
+import { ISecurityAudit } from '../../common/interfaces';
+import { defaultSecurityResults } from '../../../common/util-classes/defaults/default-templates';
 
 interface IOptions {
 	securityResults: any;
 }
 
-const goPlusAdapter = ({ securityResults }: IOptions): ISecurityResults => {
-	let adaptedSecurityResults: ISecurityResults = {
+const goPlusAdapter = ({ securityResults }: IOptions): ISecurityAudit => {
+	let adaptedSecurityResults: ISecurityAudit = {
 		...defaultSecurityResults,
 	};
 

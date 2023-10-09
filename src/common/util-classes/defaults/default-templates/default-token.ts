@@ -1,4 +1,4 @@
-import { IToken } from '../interfaces/token.interface';
+import { IToken } from '../../../../security/common/interfaces/token.interface';
 
 const defaultToken: IToken = {
 	name: null,
