@@ -11,7 +11,7 @@ interface IOptions {
 
 const runGoPlusSecurityAudit = async ({ chainId, address }: IOptions) => {
 	const formattedAddress = address.toLowerCase();
-	let adaptedSecurityResults = Defaults.generateDefaultSecurityResults();
+	let adaptedSecurityAudit = Defaults.generateDefaultSecurityAudit();
 
 	// It will only return 1 result for the 1st token address if not called getAccessToken before
 	const response = await GoPlus.tokenSecurity(
@@ -26,7 +26,7 @@ const runGoPlusSecurityAudit = async ({ chainId, address }: IOptions) => {
 		const securityResults = response.result[formattedAddress];
 
 		if (securityResults) {
-			adaptedSecurityResults = goPlusAdapter({
+			adaptedSecurityAudit = goPlusAdapter({
 				securityResults,
 			});
 		} else {
@@ -34,7 +34,7 @@ const runGoPlusSecurityAudit = async ({ chainId, address }: IOptions) => {
 		}
 	}
 
-	return adaptedSecurityResults;
+	return adaptedSecurityAudit;
 };
 
 export { runGoPlusSecurityAudit };

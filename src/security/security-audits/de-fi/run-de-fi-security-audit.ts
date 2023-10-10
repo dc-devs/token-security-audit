@@ -11,7 +11,7 @@ interface IOptions {
 const runDeFiSecurityAudit = async ({ chainId, address }: IOptions) => {
 	const deFiClient = getDeFiClient();
 	const formattedAddress = address.toLowerCase();
-	let adaptedSecurityResults = Defaults.generateDefaultSecurityResults();
+	let adaptedSecurityAudit = Defaults.generateDefaultSecurityAudit();
 
 	if (deFiClient) {
 		const response = await deFiClient.query({
@@ -26,10 +26,10 @@ const runDeFiSecurityAudit = async ({ chainId, address }: IOptions) => {
 			],
 		});
 
-		adaptedSecurityResults = deFiAdapter({ response });
+		adaptedSecurityAudit = deFiAdapter({ response });
 	}
 
-	return adaptedSecurityResults;
+	return adaptedSecurityAudit;
 };
 
 export { runDeFiSecurityAudit };

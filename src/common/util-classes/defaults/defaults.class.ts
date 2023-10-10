@@ -1,13 +1,13 @@
-import { defaultSecurityResults } from './default-templates';
+import { defaultSecurityAudit } from './default-templates';
 import { ISecurityAudit } from '../../../security/common/interfaces';
 
 class Defaults {
-	static generateDefaultSecurityResults() {
-		const adaptedSecurityResults: ISecurityAudit = {
-			...defaultSecurityResults,
+	static generateDefaultSecurityAudit() {
+		const defaultSecurityAuditCopy: ISecurityAudit = {
+			...defaultSecurityAudit,
 		};
 
-		return adaptedSecurityResults;
+		return defaultSecurityAuditCopy;
 	}
 }
 

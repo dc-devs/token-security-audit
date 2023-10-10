@@ -8,7 +8,7 @@ import { defaultContract } from './default-contract';
 import { defaultLiquidityProvider } from './default-liquidity-provider';
 import { ISecurityAudit } from '../../../../security/common/interfaces/security-audit.interface';
 
-const defaultSecurityResults: ISecurityAudit = {
+const defaultSecurityAudit: ISecurityAudit = {
 	token: defaultToken,
 	contract: defaultContract,
 	owner: defaultOwner,
@@ -19,4 +19,4 @@ const defaultSecurityResults: ISecurityAudit = {
 	other: defaultOther,
 };
 
-export { defaultSecurityResults };
+export { defaultSecurityAudit };

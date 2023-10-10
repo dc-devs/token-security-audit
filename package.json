@@ -4,8 +4,8 @@
 	"scripts": {
 		"start": "bun src/start.ts",
 		"tokenPairListener": "bun src/token-pair-tracker/start.ts",
-		"goPlusSececurityAudit": "bun src/security/security-audits/go-plus/start.ts",
-		"deFiSececurityAudit": "bun src/security/security-audits/de-fi/start.ts",
+		"goPlusSecurityAudit": "bun src/security/security-audits/go-plus/start.ts",
+		"deFiSecurityAudit": "bun src/security/security-audits/de-fi/start.ts",
 		"securityAudit": "bun src/security/start.ts"
 	},
 	"devDependencies": {

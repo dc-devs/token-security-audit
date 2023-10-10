@@ -1,14 +1,12 @@
 import { ISecurityAudit } from '../../../../common/interfaces';
-import { defaultSecurityResults } from '../../../../../common/util-classes/defaults/default-templates';
+import { Defaults } from '../../../../../common/util-classes/defaults';
 
 interface IOptions {
 	securityResults: any;
 }
 
 const goPlusAdapter = ({ securityResults }: IOptions): ISecurityAudit => {
-	let adaptedSecurityResults: ISecurityAudit = {
-		...defaultSecurityResults,
-	};
+	let adaptedSecurityAudit = Defaults.generateDefaultSecurityAudit();
 
 	const {
 		dex,
@@ -56,167 +54,167 @@ const goPlusAdapter = ({ securityResults }: IOptions): ISecurityAudit => {
 		personal_slippage_modifiable,
 	} = securityResults;
 
-	adaptedSecurityResults.holders = {
+	adaptedSecurityAudit.holders = {
 		list: holders,
 		count: holder_count,
 	};
 
-	adaptedSecurityResults.dexData = {
+	adaptedSecurityAudit.dexData = {
 		isInDex: is_in_dex === '1',
 		deployedTo: dex,
 	};
 
-	adaptedSecurityResults.token = {
+	adaptedSecurityAudit.token = {
 		name: token_name,
 		symbol: token_symbol,
 		totalSupply: total_supply,
 	};
 
-	adaptedSecurityResults.other = {
+	adaptedSecurityAudit.other = {
 		notes: note,
 		potentialRisks: other_potential_risks,
 	};
 
-	adaptedSecurityResults.liquidityProvider = {
+	adaptedSecurityAudit.liquidityProvider = {
 		holders: lp_holders,
 		holderCount: lp_holder_count,
 		totalSupply: lp_total_supply,
 	};
 
-	adaptedSecurityResults.owner = {
+	adaptedSecurityAudit.owner = {
 		changeBalance: owner_change_balance,
 		percent: owner_percent,
 		address: owner_address,
 		balance: owner_balance,
 	};
 
-	adaptedSecurityResults.creator = {
+	adaptedSecurityAudit.creator = {
 		balance: creator_balance,
 		percent: creator_percent,
 		address: creator_address,
 	};
 
-	adaptedSecurityResults.contract.isContractOpenSource = {
+	adaptedSecurityAudit.contract.isContractOpenSource = {
 		result: is_open_source === '1',
 		issues: [],
 	};
 
-	adaptedSecurityResults.contract.isHoneyPot = {
+	adaptedSecurityAudit.contract.isHoneyPot = {
 		result: is_honeypot === '1',
 		issues: [],
 	};
 
-	adaptedSecurityResults.contract.isHoneyPotWithSameCreator = {
+	adaptedSecurityAudit.contract.isHoneyPotWithSameCreator = {
 		result: honeypot_with_same_creator === '1',
 		issues: [],
 	};
 
-	adaptedSecurityResults.contract.buyTax = {
+	adaptedSecurityAudit.contract.buyTax = {
 		result: buy_tax,
 		issues: [],
 	};
 
-	adaptedSecurityResults.contract.sellTax = {
+	adaptedSecurityAudit.contract.sellTax = {
 		result: sell_tax,
 		issues: [],
 	};
 
-	adaptedSecurityResults.contract.hasProxyContract = {
+	adaptedSecurityAudit.contract.hasProxyContract = {
 		result: is_proxy === '1',
 		issues: [],
 	};
 
-	adaptedSecurityResults.contract.isMintable = {
+	adaptedSecurityAudit.contract.isMintable = {
 		result: is_mintable === '1',
 		issues: [],
 	};
 
-	adaptedSecurityResults.contract.canRetrieveOwnership = {
+	adaptedSecurityAudit.contract.canRetrieveOwnership = {
 		result: can_take_back_ownership === '1',
 		issues: [],
 	};
 
-	adaptedSecurityResults.contract.isBuyingAvailable = {
+	adaptedSecurityAudit.contract.isBuyingAvailable = {
 		result: cannot_buy === '1',
 		issues: [],
 	};
 
-	adaptedSecurityResults.contract.canUserSellAll = {
+	adaptedSecurityAudit.contract.canUserSellAll = {
 		result: cannot_sell_all === '1',
 		issues: [],
 	};
 
-	adaptedSecurityResults.contract.canTaxBeModdified = {
+	adaptedSecurityAudit.contract.canTaxBeModdified = {
 		result: slippage_modifiable === '1',
 		issues: [],
 	};
 
-	adaptedSecurityResults.contract.canUserTaxBeModified = {
+	adaptedSecurityAudit.contract.canUserTaxBeModified = {
 		result: personal_slippage_modifiable === '1',
 		issues: [],
 	};
 
-	adaptedSecurityResults.contract.isTransferPausable = {
+	adaptedSecurityAudit.contract.isTransferPausable = {
 		result: transfer_pausable === '1',
 		issues: [],
 	};
 
-	adaptedSecurityResults.contract.hasBlacklist = {
+	adaptedSecurityAudit.contract.hasBlacklist = {
 		result: is_blacklisted === '1',
 		issues: [],
 	};
 
-	adaptedSecurityResults.contract.canWalletsBeWhitelisted = {
+	adaptedSecurityAudit.contract.canWalletsBeWhitelisted = {
 		result: is_whitelisted === '1',
 		issues: [],
 	};
 
-	adaptedSecurityResults.contract.isAntiWhale = {
+	adaptedSecurityAudit.contract.isAntiWhale = {
 		result: is_anti_whale === '1',
 		issues: [],
 	};
 
-	adaptedSecurityResults.contract.isAntiWhaleModifiable = {
+	adaptedSecurityAudit.contract.isAntiWhaleModifiable = {
 		result: anti_whale_modifiable === '1',
 		issues: [],
 	};
 
-	adaptedSecurityResults.contract.hasTradingCoolDown = {
+	adaptedSecurityAudit.contract.hasTradingCoolDown = {
 		result: trading_cooldown === '1',
 		issues: [],
 	};
 
-	adaptedSecurityResults.contract.isTrueToken = {
+	adaptedSecurityAudit.contract.isTrueToken = {
 		result: is_true_token === '1',
 		issues: [],
 	};
 
-	adaptedSecurityResults.contract.isAirdropScam = {
+	adaptedSecurityAudit.contract.isAirdropScam = {
 		result: is_airdrop_scam === '1',
 		issues: [],
 	};
 
-	adaptedSecurityResults.contract.isOnTrustList = {
+	adaptedSecurityAudit.contract.isOnTrustList = {
 		result: trust_list === '1',
 		issues: [],
 	};
 
-	adaptedSecurityResults.contract.hasExternalCalls = {
+	adaptedSecurityAudit.contract.hasExternalCalls = {
 		result: external_call === '1',
 		issues: [],
 	};
 
-	adaptedSecurityResults.contract.canContractSelfDestruct = {
+	adaptedSecurityAudit.contract.canContractSelfDestruct = {
 		result: selfdestruct === '1',
 		issues: [],
 	};
 
-	adaptedSecurityResults.contract.hasHiddenOwners = {
+	adaptedSecurityAudit.contract.hasHiddenOwners = {
 		result: hidden_owner === '1',
 		issues: [],
 	};
 
-	return adaptedSecurityResults;
+	return adaptedSecurityAudit;
 };
 
 export { goPlusAdapter };
