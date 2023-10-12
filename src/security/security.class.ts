@@ -1,6 +1,6 @@
+import { ISecurityAudit } from './common/interfaces';
 import { mergeSecurityAudits } from './merge-security-audits';
-import { ISecurityAudit, IContract } from './common/interfaces';
-
+import { analyzeSecurityAudit } from './analyze-security-audit';
 import {
 	runDeFiSecurityAudit,
 	runGoPlusSecurityAudit,
@@ -12,6 +12,7 @@ interface IConstructorOptions {
 
 class Security {
 	chainId: string;
+	finalAnalysis: any;
 	finalSecurityAudit?: ISecurityAudit;
 
 	constructor({ chainId }: IConstructorOptions) {
@@ -40,22 +41,6 @@ class Security {
 		});
 	}
 
-	async start({ address }: { address: string }) {
-		const goPlusSecurityAudit = await this.runGoPlusSecurityAudit({
-			address,
-		});
-		const deFiSecurityAudit = await this.runDeFiSecurityAudit({ address });
-
-		const finalSecurityAudit = this.mergeSecurityAudits({
-			deFi: deFiSecurityAudit,
-			goPlus: goPlusSecurityAudit,
-		});
-
-		this.finalSecurityAudit = finalSecurityAudit;
-
-		return finalSecurityAudit;
-	}
-
 	mergeSecurityAudits({
 		deFi,
 		goPlus,
@@ -66,25 +51,45 @@ class Security {
 		return mergeSecurityAudits({ deFi, goPlus });
 	}
 
+	analyzeSecurityAudit({ securityAudit }: { securityAudit: ISecurityAudit }) {
+		return analyzeSecurityAudit({ securityAudit });
+	}
+
+	async start({ address }: { address: string }) {
+		const goPlusSecurityAudit = await this.runGoPlusSecurityAudit({
+			address,
+		});
+		const deFiSecurityAudit = await this.runDeFiSecurityAudit({ address });
+		const finalSecurityAudit = this.mergeSecurityAudits({
+			deFi: deFiSecurityAudit,
+			goPlus: goPlusSecurityAudit,
+		});
+		const finalAnalysis = this.analyzeSecurityAudit({
+			securityAudit: finalSecurityAudit,
+		});
+
+		this.finalSecurityAudit = finalSecurityAudit;
+		this.finalAnalysis = finalAnalysis;
+
+		return finalSecurityAudit;
+	}
+
 	displayResults() {
 		console.log(this.finalSecurityAudit);
+		console.log(this.finalAnalysis);
 		// if (this.finalSecurityAudit) {
 		// 	Object.keys(this.finalSecurityAudit).forEach((key) => {
 		// 		if (this.finalSecurityAudit) {
 		// 			const value = this.finalSecurityAudit[key];
-
 		// 			if (key === 'token') {
 		// 				console.log(key, value);
 		// 			}
-
 		// 			if (key === 'contract') {
 		// 				console.log(key);
 		// 				const contract = value as IContract;
-
 		// 				Object.keys(contract).forEach((key) => {
 		// 					const contractPropValue = contract[key];
 		// 					console.log(`  ${key}`);
-
 		// 					Object.keys(contractPropValue).forEach((key) => {
 		// 						const contractPropValueSet =
 		// 							contractPropValue[key];

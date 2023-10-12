@@ -3,7 +3,7 @@ import { IContract } from '../interfaces';
 const defaultContract: IContract = {
 	// DeFi
 	hasVulnerableWithrawlFunction: { result: null, issues: [] },
-	hasReeentrancy: { result: null, issues: [] },
+	hasReentrancy: { result: null, issues: [] },
 	arelocksDetected: { result: null, issues: [] },
 	hasVerifiedSourceCode: { result: null, issues: [] },
 	isMintable: { result: null, issues: [] },

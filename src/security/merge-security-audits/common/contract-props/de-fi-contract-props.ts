@@ -1,6 +1,6 @@
 const deFiContractProps = [
 	'hasVulnerableWithrawlFunction',
-	'hasReeentrancy',
+	'hasReentrancy',
 	'arelocksDetected',
 	'hasVerifiedSourceCode',
 	'isMintable',

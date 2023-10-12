@@ -8,8 +8,6 @@ interface IOptions {
 }
 
 // LEFT OFF:
-// Merge Defi into final audit
-
 // check if Defi audit has inProgress false, need too loop?
 // ^^ any else we shouldd add?
 
@@ -18,8 +16,9 @@ interface IOptions {
 // Scan dex tools too see if other strategies for picking up new tokens..
 
 const mergeSecurityAudits = ({ deFi, goPlus }: IOptions): ISecurityAudit => {
-	const target = {} as ISecurityAudit;
-	const finalSecurityAudit = deepCopy(target, goPlus);
+	const startTarget = {} as ISecurityAudit;
+	const finalTarget = {} as ISecurityAudit;
+	const finalSecurityAudit = deepCopy(startTarget, goPlus);
 	const { contract: defiContract } = deFi;
 	const { contract: finalContract } = finalSecurityAudit;
 
@@ -43,7 +42,6 @@ const mergeSecurityAudits = ({ deFi, goPlus }: IOptions): ISecurityAudit => {
 		}
 	});
 
-	// return copy
 	return finalSecurityAudit;
 };
 

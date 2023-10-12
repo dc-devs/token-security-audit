@@ -4,7 +4,7 @@ interface IContract {
 	[key: string]: IResult;
 	// DeFi
 	hasVulnerableWithrawlFunction: IResult;
-	hasReeentrancy: IResult;
+	hasReentrancy: IResult;
 	arelocksDetected: IResult;
 	hasVerifiedSourceCode: IResult;
 	isMintable: IResult;

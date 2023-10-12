@@ -4,7 +4,7 @@ interface ICoreIssueIdDescriptionMap {
 
 const coreIssueIdNameMap: ICoreIssueIdDescriptionMap = {
 	105: 'hasVulnerableWithrawlFunction', // 'No vulnerable withdrawal functions found',
-	107: 'hasReeentrancy', // 'No reentrancy risk found',
+	107: 'hasReentrancy', // 'No reentrancy risk found',
 	150: 'arelocksDetected', // 'No locks detected',
 	185: 'hasVerifiedSourceCode', // 'Verified source code found',
 	186: 'isMintable', // 'No mintable risks found',
