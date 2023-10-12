@@ -7,4 +7,4 @@ const security = new Security({ chainId });
 
 await security.start({ address });
 
-// security.displayResults();
+security.displayResults();
