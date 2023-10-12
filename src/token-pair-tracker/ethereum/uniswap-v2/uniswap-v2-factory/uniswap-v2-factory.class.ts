@@ -2,6 +2,7 @@ import { ethers as ethersJs } from 'ethers';
 import { UniswapV2Pair } from '../uniswap-v2-pair';
 import { UniswapV2Erc20 } from '../uniswap-v2-erc-20';
 import { ethers, pubSub } from '../../../../common/util-classes';
+import { PubSubEvent } from '../../../../common/enums';
 import { UniswapV2FactoryAbi } from '../../../../common/abis/uniswap-v2';
 import {
 	UniswapV2Address,
@@ -66,7 +67,7 @@ class UniswapV2Factory {
 				const reserves = await uniswapV2Pair.contract.getReserves();
 				const { reserve0, reserve1 } = reserves;
 
-				pubSub.emit('newTokenPairCreated', {
+				pubSub.emit(PubSubEvent.NewTokenPairCreated, {
 					token0,
 					token1,
 					reserve0,

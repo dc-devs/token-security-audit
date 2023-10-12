@@ -1,4 +1,4 @@
-import { IContract } from '../../../../security/common/interfaces';
+import { IContract } from '../interfaces';
 
 const defaultContract: IContract = {
 	// DeFi

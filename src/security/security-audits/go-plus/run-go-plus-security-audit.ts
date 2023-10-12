@@ -2,7 +2,7 @@ import { ErrorMessage } from './common/enums';
 import { goPlusAdapter } from './common/adapter';
 // @ts-expect-error: Module does not have valid TS declaration file
 import { GoPlus, ErrorCode } from '@goplus/sdk-node';
-import { Defaults } from '../../../common/util-classes/defaults';
+import { generateDefaultSecurityAudit } from '../../common/utils';
 
 interface IOptions {
 	chainId: string;
@@ -11,7 +11,7 @@ interface IOptions {
 
 const runGoPlusSecurityAudit = async ({ chainId, address }: IOptions) => {
 	const formattedAddress = address.toLowerCase();
-	let adaptedSecurityAudit = Defaults.generateDefaultSecurityAudit();
+	let adaptedSecurityAudit = generateDefaultSecurityAudit();
 
 	// It will only return 1 result for the 1st token address if not called getAccessToken before
 	const response = await GoPlus.tokenSecurity(

@@ -1,26 +1,28 @@
 {
-	"name": "crypto-trading-bot",
-	"module": "index.ts",
-	"scripts": {
-		"start": "bun src/start.ts",
-		"tokenPairListener": "bun src/token-pair-tracker/start.ts",
-		"goPlusSecurityAudit": "bun src/security/security-audits/go-plus/start.ts",
-		"deFiSecurityAudit": "bun src/security/security-audits/de-fi/start.ts",
-		"securityAudit": "bun src/security/start.ts"
-	},
-	"devDependencies": {
-		"bun-types": "latest",
-		"prettier": "^3.0.3"
-	},
-	"peerDependencies": {
-		"typescript": "^5.0.0"
-	},
-	"dependencies": {
-		"@de-fi/sdk": "^2.1.12",
-		"@goplus/sdk-node": "^1.0.9",
-		"@types/yargs": "^17.0.28",
-		"dotenv": "^16.3.1",
-		"ethers": "^6.7.1",
-		"yargs": "^17.7.2"
-	}
+  "name": "crypto-trading-bot",
+  "module": "index.ts",
+  "scripts": {
+    "test": "jest",
+    "start": "bun src/start.ts",
+    "tokenPairListener": "bun src/token-pair-tracker/start.ts",
+    "goPlusSecurityAudit": "bun src/security/security-audits/go-plus/start.ts",
+    "deFiSecurityAudit": "bun src/security/security-audits/de-fi/start.ts",
+    "securityAudit": "bun src/security/start.ts"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.5",
+    "bun-types": "latest",
+    "jest": "^29.7.0",
+    "prettier": "^3.0.3"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@de-fi/sdk": "^2.1.12",
+    "@goplus/sdk-node": "^1.0.9",
+    "@types/yargs": "^17.0.28",
+    "dotenv": "^16.3.1",
+    "ethers": "^6.7.1"
+  }
 }

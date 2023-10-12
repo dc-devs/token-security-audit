@@ -1,4 +1,4 @@
-import { IOther } from '../../../../security/common/interfaces';
+import { IOther } from '../interfaces';
 
 const defaultOther: IOther = {
 	notes: null,

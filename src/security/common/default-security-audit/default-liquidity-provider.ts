@@ -1,4 +1,4 @@
-import { ILiquidityProvider } from '../../../../security/common/interfaces';
+import { ILiquidityProvider } from '../interfaces';
 
 const defaultLiquidityProvider: ILiquidityProvider = {
 	holders: [],

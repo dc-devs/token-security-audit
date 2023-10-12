@@ -1,5 +1,6 @@
 import { mergeSecurityAudits } from './merge-security-audits';
 import { ISecurityAudit, IContract } from './common/interfaces';
+
 import {
 	runDeFiSecurityAudit,
 	runGoPlusSecurityAudit,

@@ -1,12 +1,11 @@
 import { ISecurityAudit } from '../../../../common/interfaces';
-import { Defaults } from '../../../../../common/util-classes/defaults';
-
+import { generateDefaultSecurityAudit } from '../../../../common/utils';
 interface IOptions {
 	securityResults: any;
 }
 
 const goPlusAdapter = ({ securityResults }: IOptions): ISecurityAudit => {
-	let adaptedSecurityAudit = Defaults.generateDefaultSecurityAudit();
+	let adaptedSecurityAudit = generateDefaultSecurityAudit();
 
 	const {
 		dex,

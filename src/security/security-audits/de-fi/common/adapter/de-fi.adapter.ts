@@ -1,14 +1,14 @@
 import { ICoreIssue } from './common/interfaces';
 import { coreIssueIdNameMap } from './common/constants';
 import { ISecurityAudit } from '../../../../common/interfaces';
-import { Defaults } from '../../../../../common/util-classes/defaults';
+import { generateDefaultSecurityAudit } from '../../../../common/utils';
 
 interface IOptions {
 	response: any;
 }
 
 const deFiAdapter = ({ response }: IOptions): ISecurityAudit => {
-	let adaptedSecurityAudit = Defaults.generateDefaultSecurityAudit();
+	let adaptedSecurityAudit = generateDefaultSecurityAudit();
 	const { inProgress, estimatedAnalyzingTime, coreIssues } = response.data
 		.scannerProject as any;
 

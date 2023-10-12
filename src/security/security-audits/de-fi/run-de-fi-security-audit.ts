@@ -1,8 +1,7 @@
 import { deFiAdapter } from './common/adapter';
 import { getDeFiClient } from './common/utils';
 import { scannerProjectSchema } from './common/schemas';
-import { Defaults } from '../../../common/util-classes/defaults';
-
+import { generateDefaultSecurityAudit } from '../../common/utils';
 interface IOptions {
 	chainId: string;
 	address: string;
@@ -11,7 +10,7 @@ interface IOptions {
 const runDeFiSecurityAudit = async ({ chainId, address }: IOptions) => {
 	const deFiClient = getDeFiClient();
 	const formattedAddress = address.toLowerCase();
-	let adaptedSecurityAudit = Defaults.generateDefaultSecurityAudit();
+	let adaptedSecurityAudit = generateDefaultSecurityAudit();
 
 	if (deFiClient) {
 		const response = await deFiClient.query({
