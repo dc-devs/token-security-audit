@@ -1,4 +1,4 @@
-import { ISecurityAudit } from './common/interfaces';
+import { ISecurityAudit, IAnalysis } from './common/interfaces';
 import { mergeSecurityAudits } from './merge-security-audits';
 import { analyzeSecurityAudit } from './analyze-security-audit';
 import {
@@ -51,7 +51,11 @@ class Security {
 		return mergeSecurityAudits({ deFi, goPlus });
 	}
 
-	analyzeSecurityAudit({ securityAudit }: { securityAudit: ISecurityAudit }) {
+	analyzeSecurityAudit({
+		securityAudit,
+	}: {
+		securityAudit: ISecurityAudit;
+	}): IAnalysis {
 		return analyzeSecurityAudit({ securityAudit });
 	}
 
@@ -75,37 +79,9 @@ class Security {
 	}
 
 	displayResults() {
-		console.log(this.finalSecurityAudit);
+		// console.log(this.finalSecurityAudit);
 		console.log(this.finalAnalysis);
-		// if (this.finalSecurityAudit) {
-		// 	Object.keys(this.finalSecurityAudit).forEach((key) => {
-		// 		if (this.finalSecurityAudit) {
-		// 			const value = this.finalSecurityAudit[key];
-		// 			if (key === 'token') {
-		// 				console.log(key, value);
-		// 			}
-		// 			if (key === 'contract') {
-		// 				console.log(key);
-		// 				const contract = value as IContract;
-		// 				Object.keys(contract).forEach((key) => {
-		// 					const contractPropValue = contract[key];
-		// 					console.log(`  ${key}`);
-		// 					Object.keys(contractPropValue).forEach((key) => {
-		// 						const contractPropValueSet =
-		// 							contractPropValue[key];
-		// 						console.log(
-		// 							'  ',
-		// 							key,
-		// 							'  ',
-		// 							contractPropValueSet,
-		// 						);
-		// 					});
-		// 				});
-		// 			}
-		// 		}
-		// 	});
 	}
-	// }
 }
 
 export { Security };
