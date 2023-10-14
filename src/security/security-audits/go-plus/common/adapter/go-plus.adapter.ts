@@ -4,6 +4,10 @@ interface IOptions {
 	securityResults: any;
 }
 
+// LEFT OFF
+// Fix Type Errorrs on iResultls
+// Add customStrategy for Buy/Sell tax
+// Then add this is customStrategy to Analysis
 const goPlusAdapter = ({ securityResults }: IOptions): ISecurityAudit => {
 	let adaptedSecurityAudit = generateDefaultSecurityAudit();
 

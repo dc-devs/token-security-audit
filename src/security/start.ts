@@ -17,3 +17,6 @@ security.displayResults();
 
 // KOMPETE (Safe?)
 // bun run securityAudit --address='0x1e0b2992079b620aa13a7c2e7c88d2e1e18e46e9' --chainId='1'
+
+// ILLUMIANTI (Safe?)
+// bun run securityAudit --address='0x98e1f56b334438e3f0bde22d92f5bfd746e0631f' --chainId='1'

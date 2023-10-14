@@ -90,6 +90,15 @@ const customizeDataStrategies: ICustomizeDataStrategies = {
 			deFiIssues: issues,
 		};
 	},
+	hasVerifiedSourceCode: ({ key, issues, contract }) => {
+		console.log('issues.length === 0');
+		contract[key] = {
+			result: issues.length === 0,
+			value: null,
+			modifiable: null,
+			deFiIssues: issues,
+		};
+	},
 };
 
 interface IOptions {
@@ -120,7 +129,7 @@ const deFiAdapter = ({ response }: IOptions): ISecurityAudit => {
 			// buy tax,
 			// sell tax,
 			// transfer amount etc..
-			if (hasIssues && customizeDataStrategy) {
+			if (customizeDataStrategy) {
 				customizeDataStrategy({
 					key,
 					issues,
