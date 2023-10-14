@@ -95,122 +95,122 @@ const goPlusAdapter = ({ securityResults }: IOptions): ISecurityAudit => {
 
 	adaptedSecurityAudit.contract.isContractOpenSource = {
 		result: is_open_source === '1',
-		issues: [],
+		deFiIssues: [],
 	};
 
 	adaptedSecurityAudit.contract.isHoneyPot = {
 		result: is_honeypot === '1',
-		issues: [],
+		deFiIssues: [],
 	};
 
 	adaptedSecurityAudit.contract.isHoneyPotWithSameCreator = {
 		result: honeypot_with_same_creator === '1',
-		issues: [],
+		deFiIssues: [],
 	};
 
 	adaptedSecurityAudit.contract.buyTax = {
 		result: buy_tax,
-		issues: [],
+		deFiIssues: [],
 	};
 
 	adaptedSecurityAudit.contract.sellTax = {
 		result: sell_tax,
-		issues: [],
+		deFiIssues: [],
 	};
 
 	adaptedSecurityAudit.contract.hasProxyContract = {
 		result: is_proxy === '1',
-		issues: [],
+		deFiIssues: [],
 	};
 
 	adaptedSecurityAudit.contract.isMintable = {
 		result: is_mintable === '1',
-		issues: [],
+		deFiIssues: [],
 	};
 
 	adaptedSecurityAudit.contract.canRetrieveOwnership = {
 		result: can_take_back_ownership === '1',
-		issues: [],
+		deFiIssues: [],
 	};
 
 	adaptedSecurityAudit.contract.isBuyingAvailable = {
 		result: cannot_buy === '1',
-		issues: [],
+		deFiIssues: [],
 	};
 
 	adaptedSecurityAudit.contract.canUserSellAll = {
 		result: cannot_sell_all === '1',
-		issues: [],
+		deFiIssues: [],
 	};
 
 	adaptedSecurityAudit.contract.canTaxBeModdified = {
 		result: slippage_modifiable === '1',
-		issues: [],
+		deFiIssues: [],
 	};
 
 	adaptedSecurityAudit.contract.canUserTaxBeModified = {
 		result: personal_slippage_modifiable === '1',
-		issues: [],
+		deFiIssues: [],
 	};
 
 	adaptedSecurityAudit.contract.isTransferPausable = {
 		result: transfer_pausable === '1',
-		issues: [],
+		deFiIssues: [],
 	};
 
 	adaptedSecurityAudit.contract.hasBlacklist = {
 		result: is_blacklisted === '1',
-		issues: [],
+		deFiIssues: [],
 	};
 
 	adaptedSecurityAudit.contract.canWalletsBeWhitelisted = {
 		result: is_whitelisted === '1',
-		issues: [],
+		deFiIssues: [],
 	};
 
 	adaptedSecurityAudit.contract.isAntiWhale = {
 		result: is_anti_whale === '1',
-		issues: [],
+		deFiIssues: [],
 	};
 
 	adaptedSecurityAudit.contract.isAntiWhaleModifiable = {
 		result: anti_whale_modifiable === '1',
-		issues: [],
+		deFiIssues: [],
 	};
 
 	adaptedSecurityAudit.contract.hasTradingCoolDown = {
 		result: trading_cooldown === '1',
-		issues: [],
+		deFiIssues: [],
 	};
 
 	adaptedSecurityAudit.contract.isTrueToken = {
 		result: is_true_token === '1',
-		issues: [],
+		deFiIssues: [],
 	};
 
 	adaptedSecurityAudit.contract.isAirdropScam = {
 		result: is_airdrop_scam === '1',
-		issues: [],
+		deFiIssues: [],
 	};
 
 	adaptedSecurityAudit.contract.isOnTrustList = {
 		result: trust_list === '1',
-		issues: [],
+		deFiIssues: [],
 	};
 
 	adaptedSecurityAudit.contract.hasExternalCalls = {
 		result: external_call === '1',
-		issues: [],
+		deFiIssues: [],
 	};
 
 	adaptedSecurityAudit.contract.canContractSelfDestruct = {
 		result: selfdestruct === '1',
-		issues: [],
+		deFiIssues: [],
 	};
 
 	adaptedSecurityAudit.contract.hasHiddenOwners = {
 		result: hidden_owner === '1',
-		issues: [],
+		deFiIssues: [],
 	};
 
 	return adaptedSecurityAudit;

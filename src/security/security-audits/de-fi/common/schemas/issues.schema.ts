@@ -1,4 +1,4 @@
-const issuesSchema = {
+const deFiIssuesSchema = {
 	scwId: true,
 	scwTitle: true,
 	scwDescription: true,
@@ -34,4 +34,4 @@ const issuesSchema = {
 	},
 };
 
-export { issuesSchema };
+export { deFiIssuesSchema };

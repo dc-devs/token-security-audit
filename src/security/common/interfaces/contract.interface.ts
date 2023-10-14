@@ -6,7 +6,7 @@ interface IContract {
 	hasVulnerableWithrawlFunction: IResult;
 	hasReentrancy: IResult;
 	arelocksDetected: IResult;
-	hasVerifiedSourceCode: IResult;
+	hasVerifiedSourceCode: IResult; // Only opposite
 	isMintable: IResult;
 	isTransferPausable: IResult;
 	canContractBeUpgraded: IResult;

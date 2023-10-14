@@ -1,10 +1,20 @@
-interface IAnalysis {
-	highRiskCount: number;
-	highRisk: Record<string, unknown>;
-	mediumRiskCount: number;
-	mediumRisk: Record<string, unknown>;
-	lowRiskCount: number;
+interface IPurchase {
+	isSafe: boolean;
+	needsManualReview: boolean;
+}
+
+interface IRisk {
+	highCount: number;
+	high: Record<string, unknown>;
+	mediumCount: number;
+	medium: Record<string, unknown>;
+	lowCount: number;
 	lowRisk: Record<string, unknown>;
+}
+
+interface IAnalysis {
+	risk: IRisk;
+	purchase: IPurchase;
 }
 
 export { IAnalysis };

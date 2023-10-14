@@ -80,7 +80,12 @@ class Security {
 
 	displayResults() {
 		// console.log(this.finalSecurityAudit);
-		console.log(this.finalAnalysis);
+		// console.log('');
+		Object.keys(this.finalAnalysis).forEach((key) => {
+			const value = this.finalAnalysis[key];
+
+			console.log(key, value);
+		});
 	}
 }
 

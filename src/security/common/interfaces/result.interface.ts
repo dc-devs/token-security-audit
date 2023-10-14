@@ -1,7 +1,9 @@
 interface IResult {
-	[key: string]: boolean | null | any[];
+	[key: string]: boolean | number | null | any[];
 	result: boolean | null;
-	issues: any[];
+	value: number | null;
+	modifiable: boolean | null;
+	deFiIssues: any[];
 }
 
 export { IResult };

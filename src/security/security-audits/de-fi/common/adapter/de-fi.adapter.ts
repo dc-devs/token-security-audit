@@ -26,9 +26,15 @@ const deFiAdapter = ({ response }: IOptions): ISecurityAudit => {
 			const hasIssues = issues.length > 0;
 			const key = coreIssueIdNameMap[coreIssue.id];
 
+			// Additional value modifiacation here:
+			// buy tax,
+			// sell tax,
+			// transferr amount etc..
 			adaptedSecurityAudit.contract[key] = {
 				result: hasIssues,
-				issues,
+				value: null,
+				modifiable: null,
+				deFiIssues: issues,
 			};
 		});
 	}
