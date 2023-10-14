@@ -1,7 +1,7 @@
 interface IResult {
-	[key: string]: boolean | number | null | any[];
+	[key: string]: Record<string, unknown> | boolean | number | null | any[];
 	result: boolean | null;
-	value: number | null;
+	value: Record<string, unknown> | number | null;
 	modifiable: boolean | null;
 	deFiIssues: any[];
 }

@@ -99,43 +99,38 @@ const customAnalysisStrategies: ICustomAnalysisStrategies = {
 		contractPropName,
 		contractPropValue,
 	}) => {
-		if (!contractPropValue.result) {
+		const { result } = contractPropValue;
+
+		if (result === false) {
 			analysis.risk.high[contractPropName] = contractPropValue;
 			analysis.risk.highCount += 1;
 		}
 	},
-	// This belongs in another grooming step..
-	// this method should just check for transferFee > 4.99 then high
+	isContractOpenSource: ({
+		analysis,
+		contractPropName,
+		contractPropValue,
+	}) => {
+		const { result } = contractPropValue;
+
+		if (result === false) {
+			analysis.risk.high[contractPropName] = contractPropValue;
+			analysis.risk.highCount += 1;
+		}
+	},
+	// MAYBE ALWAYS DANGER
 	hasTransferFee: ({ analysis, contractPropName, contractPropValue }) => {
-		// Get Transfer Fees
-		// analysis.risk.medium.hasTransferFee.deFiIssues[0].data;
-		let highestTransferFee = 0;
-		let modifiable = false;
+		const { value } = contractPropValue;
 
-		const transferFeeDatas = contractPropValue.deFiIssues.map((issue) => {
-			return JSON.parse(issue.data);
-		});
+		if (value && typeof value === 'number' && value > 0.0499) {
+			analysis.risk.high[contractPropName] = contractPropValue;
+			analysis.risk.highCount += 1;
+		}
+	},
+	hasTransferLimit: ({ analysis, contractPropName, contractPropValue }) => {
+		const { value } = contractPropValue;
 
-		transferFeeDatas.forEach((transferFeeData) => {
-			const transferFees = transferFeeData?.transferFee;
-			const isModifiable = transferFeeData?.modifiable;
-
-			transferFees.forEach((transferFee: any) => {
-				const currentTransferFee = transferFee?.value;
-
-				if (currentTransferFee > highestTransferFee) {
-					highestTransferFee = currentTransferFee;
-				}
-			});
-
-			if (isModifiable) {
-				modifiable = isModifiable;
-			}
-		});
-
-		if (highestTransferFee > 0.0499) {
-			contractPropValue.value = highestTransferFee;
-			contractPropValue.modifiable = modifiable;
+		if (value && typeof value === 'object' && value?.upper) {
 			analysis.risk.high[contractPropName] = contractPropValue;
 			analysis.risk.highCount += 1;
 		}
