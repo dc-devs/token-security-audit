@@ -1,18 +1,20 @@
 import { IIssueSeverityChange } from './issue-serverity-change.interface';
 import { IIssueAdditionalData } from './issue-additional-data.interface';
 import { IIssueGovernance } from './issue-governance.interface';
+import { Impact, Confidence } from '../enums';
 
 interface IIssue {
 	id: number;
-	confidence: string;
-	impact: string;
+	confidence: Confidence;
+	impact: Impact;
 	description: string;
 	start: number;
 	end: number;
-	snippet: string;
-	severityChanges: IIssueSeverityChange;
-	additionalData: IIssueAdditionalData;
-	governanceInfo: IIssueGovernance;
+	data: string;
+	snippet?: string;
+	severityChanges: IIssueSeverityChange[];
+	additionalData: IIssueAdditionalData[];
+	governanceInfo: IIssueGovernance | null;
 }
 
 export { IIssue };

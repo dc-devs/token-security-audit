@@ -1,7 +1,8 @@
-import { ICoreIssue } from './common/interfaces';
+import { ICoreIssue, IIssue } from './common/interfaces';
 import { coreIssueIdNameMap } from './common/constants';
 import { ISecurityAudit, IContract } from '../../../../common/interfaces';
 import { generateDefaultSecurityAudit } from '../../../../common/utils';
+import { getHighestImpactIssue } from './common/utils/';
 
 interface ICustomizeDataStrategies {
 	[key: string]: ({
@@ -20,6 +21,9 @@ const customizeDataStrategies: ICustomizeDataStrategies = {
 		// Get Transfer Fees
 		let highestTransferFee = 0;
 		let modifiable = false;
+		const highestImpactIssue = getHighestImpactIssue({
+			issues,
+		});
 
 		const transferFeeDatas = issues.map((issue) => {
 			return JSON.parse(issue.data);
@@ -29,13 +33,15 @@ const customizeDataStrategies: ICustomizeDataStrategies = {
 			const transferFees = transferFeeData?.transferFee;
 			const isModifiable = transferFeeData?.modifiable;
 
-			transferFees.forEach((transferFee: any) => {
-				const currentTransferFee = transferFee?.value;
+			if (Array.isArray(transferFees)) {
+				transferFees.forEach((transferFee: any) => {
+					const currentTransferFee = transferFee?.value;
 
-				if (currentTransferFee > highestTransferFee) {
-					highestTransferFee = currentTransferFee;
-				}
-			});
+					if (currentTransferFee > highestTransferFee) {
+						highestTransferFee = currentTransferFee;
+					}
+				});
+			}
 
 			if (isModifiable) {
 				modifiable = isModifiable;
@@ -45,6 +51,8 @@ const customizeDataStrategies: ICustomizeDataStrategies = {
 		contract[key] = {
 			result: true,
 			value: highestTransferFee,
+			impact: highestImpactIssue?.impact || null,
+			confidence: highestImpactIssue?.confidence || null,
 			modifiable,
 			deFiIssues: issues,
 		};
@@ -53,6 +61,9 @@ const customizeDataStrategies: ICustomizeDataStrategies = {
 		// Get Transfer Fees
 		let highestUpperTransferLimit = 0;
 		let highestLowerTransferLimit = 0;
+		const highestImpactIssue = getHighestImpactIssue({
+			issues,
+		});
 
 		const transferLimitDatas = issues.map((issue) => {
 			return JSON.parse(issue.data);
@@ -86,13 +97,20 @@ const customizeDataStrategies: ICustomizeDataStrategies = {
 				lower: highestLowerTransferLimit,
 				// Calc Percent with total supply
 			},
+			impact: highestImpactIssue?.impact || null,
+			confidence: highestImpactIssue?.confidence || null,
 			modifiable: null,
 			deFiIssues: issues,
 		};
 	},
 	hasVerifiedSourceCode: ({ key, issues, contract }) => {
-		console.log('issues.length === 0');
+		const highestImpactIssue = getHighestImpactIssue({
+			issues,
+		});
+
 		contract[key] = {
+			impact: highestImpactIssue?.impact || null,
+			confidence: highestImpactIssue?.confidence || null,
 			result: issues.length === 0,
 			value: null,
 			modifiable: null,
@@ -111,39 +129,53 @@ const deFiAdapter = ({ response }: IOptions): ISecurityAudit => {
 		.scannerProject as any;
 
 	if (Array.isArray(coreIssues)) {
-		coreIssues.forEach((deFiCoreIssue) => {
-			const { scwTitle, scwDescription, scwId, issues } = deFiCoreIssue;
+		coreIssues.forEach(
+			(deFiCoreIssue: {
+				scwTitle: string;
+				scwId: string;
+				scwDescription: string;
+				issues: IIssue[];
+			}) => {
+				const { scwTitle, scwDescription, scwId, issues } =
+					deFiCoreIssue;
 
-			const coreIssue: ICoreIssue = {
-				id: scwId,
-				title: scwTitle,
-				description: scwDescription,
-				issues,
-			};
-
-			const hasIssues = issues.length > 0;
-			const key = coreIssueIdNameMap[coreIssue.id];
-			const customizeDataStrategy = customizeDataStrategies[key];
-
-			// Additional value modifiacation here:
-			// buy tax,
-			// sell tax,
-			// transfer amount etc..
-			if (customizeDataStrategy) {
-				customizeDataStrategy({
-					key,
+				const coreIssue: ICoreIssue = {
+					id: scwId,
+					title: scwTitle,
+					description: scwDescription,
 					issues,
-					contract: adaptedSecurityAudit.contract,
-				});
-			} else {
-				adaptedSecurityAudit.contract[key] = {
-					result: hasIssues,
-					value: null,
-					modifiable: null,
-					deFiIssues: issues,
 				};
-			}
-		});
+
+				const hasIssues = issues.length > 0;
+				const key = coreIssueIdNameMap[coreIssue.id];
+				const customizeDataStrategy = customizeDataStrategies[key];
+
+				// Additional value modifiacation here:
+				// buy tax,
+				// sell tax,
+				// transfer amount etc..
+				if (customizeDataStrategy) {
+					customizeDataStrategy({
+						key,
+						issues,
+						contract: adaptedSecurityAudit.contract,
+					});
+				} else {
+					const highestImpactIssue = getHighestImpactIssue({
+						issues,
+					});
+
+					adaptedSecurityAudit.contract[key] = {
+						result: hasIssues,
+						value: null,
+						impact: highestImpactIssue?.impact || null,
+						confidence: highestImpactIssue?.confidence || null,
+						modifiable: null,
+						deFiIssues: issues,
+					};
+				}
+			},
+		);
 	}
 
 	return adaptedSecurityAudit;

@@ -2,6 +2,10 @@ import { ISecurityAudit, IAnalysis, IResult } from '../common/interfaces';
 
 // Just for catagorizing
 //-------------------------------
+interface ICriticalRiskIssues {
+	[key: string]: boolean;
+}
+
 interface IHighRiskIssues {
 	[key: string]: boolean;
 }
@@ -148,12 +152,16 @@ const analyzeSecurityAudit = ({ securityAudit }: IOptions) => {
 			needsManualReview: true,
 		},
 		risk: {
+			criticalCount: 0,
 			highCount: 0,
 			mediumCount: 0,
 			lowCount: 0,
+			informationCount: 0,
+			critical: {},
 			high: {},
 			medium: {},
-			lowRisk: {},
+			low: {},
+			information: {},
 		},
 	} as IAnalysis;
 	const { contract } = securityAudit;
@@ -202,7 +210,7 @@ const analyzeSecurityAudit = ({ securityAudit }: IOptions) => {
 			}
 
 			if (lowRiskIssues[contractPropName] && contractPropValue.result) {
-				analysis.risk.lowRisk[contractPropName] = contractPropValue;
+				analysis.risk.low[contractPropName] = contractPropValue;
 				analysis.risk.lowCount += 1;
 			}
 		}

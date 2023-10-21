@@ -20,3 +20,6 @@ security.displayResults();
 
 // ILLUMIANTI (Safe?)
 // bun run securityAudit --address='0x98e1f56b334438e3f0bde22d92f5bfd746e0631f' --chainId='1'
+
+// MEDUSA SAFU
+// bun run securityAudit --address='0x41Baa861237b7B429562bd2eEFa9C190c8E50DFb' --chainId='1'

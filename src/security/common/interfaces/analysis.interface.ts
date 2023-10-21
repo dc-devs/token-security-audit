@@ -4,12 +4,16 @@ interface IPurchase {
 }
 
 interface IRisk {
+	criticalCount: number;
 	highCount: number;
-	high: Record<string, unknown>;
 	mediumCount: number;
-	medium: Record<string, unknown>;
 	lowCount: number;
-	lowRisk: Record<string, unknown>;
+	informationCount: number;
+	critical: Record<string, unknown>;
+	high: Record<string, unknown>;
+	medium: Record<string, unknown>;
+	low: Record<string, unknown>;
+	information: Record<string, unknown>;
 }
 
 interface IAnalysis {
