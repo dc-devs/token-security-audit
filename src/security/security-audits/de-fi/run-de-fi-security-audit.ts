@@ -1,7 +1,8 @@
-import { deFiAdapter } from './de-fi.adapter';
+import { deFiAdapter } from './adapter/de-fi.adapter';
 import { getDeFiClient } from './common/utils';
 import { scannerProjectSchema } from './common/schemas';
 import { generateDefaultSecurityAudit } from '../../common/utils';
+
 interface IOptions {
 	chainId: string;
 	address: string;
