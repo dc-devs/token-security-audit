@@ -1,9 +1,9 @@
 import { IIssue } from './issue.interface';
 
 interface ICoreIssue {
-	id: string; //scwId;
-	title: null | string; //scwTitle;
-	description: string; //scwDescription;
+	scwTitle: string;
+	scwId: string;
+	scwDescription: string;
 	issues: IIssue[];
 }
 

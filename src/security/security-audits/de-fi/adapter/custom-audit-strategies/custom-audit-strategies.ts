@@ -3,10 +3,10 @@ import { hasTransferLimit } from './has-transfer-limit';
 import { hasVerifiedSourceCode } from './has-verified-source-code';
 import { ICustomDataStrategiesOptions } from '../../common/interfaces';
 
-const customDataStrategies: ICustomDataStrategiesOptions = {
+const customAuditStrategies: ICustomDataStrategiesOptions = {
 	hasTransferFee,
 	hasTransferLimit,
 	hasVerifiedSourceCode,
 };
 
-export { customDataStrategies };
+export { customAuditStrategies };
