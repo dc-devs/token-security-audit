@@ -1,8 +1,8 @@
 import { ICoreIssue, IIssue } from './common/interfaces';
-import { coreIssueIdNameMap } from '../constants';
-import { ISecurityAudit, IContract } from '../../../../common/interfaces';
-import { generateDefaultSecurityAudit } from '../../../../common/utils';
-import { getHighestImpactIssue } from './common/utils/';
+import { coreIssueIdNameMap } from './common/constants';
+import { ISecurityAudit, IContract } from '../../common/interfaces';
+import { generateDefaultSecurityAudit } from '../../common/utils';
+import { getHighestImpactIssue } from './common/utils';
 
 interface ICustomizeDataStrategies {
 	[key: string]: ({

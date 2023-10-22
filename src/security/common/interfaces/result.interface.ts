@@ -1,7 +1,7 @@
 import {
 	Impact,
 	Confidence,
-} from '../../security-audits/de-fi/common/adapter/common/enums';
+} from '../../security-audits/de-fi/adapter/common/enums';
 
 interface IResult {
 	[key: string]:

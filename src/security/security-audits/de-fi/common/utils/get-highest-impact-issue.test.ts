@@ -5,7 +5,7 @@ import {
 	isssuesMixedImpact,
 	isssuesLowToHighImpact,
 	isssuesHighToLowImpact,
-} from '../../../../../../../../tests/mocks/defi-issues';
+} from '../../../../../../tests/mocks/defi-issues';
 
 describe('getHighestImpactIssue', () => {
 	describe('when issues are ordered from high to low criticality', () => {

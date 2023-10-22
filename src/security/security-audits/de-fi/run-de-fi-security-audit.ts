@@ -1,4 +1,4 @@
-import { deFiAdapter } from './common/adapter';
+import { deFiAdapter } from './de-fi.adapter';
 import { getDeFiClient } from './common/utils';
 import { scannerProjectSchema } from './common/schemas';
 import { generateDefaultSecurityAudit } from '../../common/utils';

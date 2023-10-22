@@ -1,4 +1,4 @@
-import { IIssue } from '../../../src/security/security-audits/de-fi/common/adapter/common/interfaces/issue.interface';
+import { IIssue } from '../../../src/security/security-audits/de-fi/common/interfaces/issue.interface';
 
 const isssuesLowToHighImpact: IIssue[] = [
 	{
