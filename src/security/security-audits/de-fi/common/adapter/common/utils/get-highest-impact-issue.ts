@@ -1,5 +1,5 @@
 import { IIssue } from '../interfaces';
-import { Impact } from '../enums';
+import { Impact } from '../../../enums';
 
 type IReturn = IIssue | null;
 
