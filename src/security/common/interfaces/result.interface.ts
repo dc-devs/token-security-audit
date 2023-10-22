@@ -1,7 +1,5 @@
-import {
-	Impact,
-	Confidence,
-} from '../../security-audits/de-fi/adapter/common/enums';
+import { IValue } from '../../security-audits/de-fi/common/interfaces';
+import { Impact, Confidence } from '../../security-audits/de-fi/common/enums';
 
 interface IResult {
 	[key: string]:
@@ -10,9 +8,11 @@ interface IResult {
 		| boolean
 		| number
 		| null
-		| any[];
+		| any[]
+		| IValue
+		| IValue[];
 	result: boolean | null;
-	value: Record<string, unknown> | number | null;
+	value: Record<string, unknown> | number | IValue | IValue[] | null;
 	modifiable: boolean | null;
 	impact: Impact | null;
 	confidence: Confidence | null;

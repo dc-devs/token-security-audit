@@ -14,14 +14,17 @@ const getHighestImpactIssue = ({ issues }: IOptions): IReturn => {
 		issues.forEach((issue) => {
 			const issueImpact = issue.impact;
 
-			// TODO: Would cause override if 2 Critical issues
-			// Probably OK for now
-			if (issueImpact === Impact.Critical) {
+			// Setup to take first issue in each impact category..
+			if (
+				issueImpact === Impact.Critical &&
+				highestImpactIssue?.impact !== Impact.Critical
+			) {
 				highestImpactIssue = issue;
 			}
 
 			if (
 				issueImpact === Impact.High &&
+				highestImpactIssue?.impact !== Impact.High &&
 				highestImpactIssue?.impact !== Impact.Critical
 			) {
 				highestImpactIssue = issue;
@@ -29,6 +32,7 @@ const getHighestImpactIssue = ({ issues }: IOptions): IReturn => {
 
 			if (
 				issueImpact === Impact.Medium &&
+				highestImpactIssue?.impact !== Impact.Medium &&
 				highestImpactIssue?.impact !== Impact.Critical &&
 				highestImpactIssue?.impact !== Impact.High
 			) {
@@ -37,6 +41,7 @@ const getHighestImpactIssue = ({ issues }: IOptions): IReturn => {
 
 			if (
 				issueImpact === Impact.Low &&
+				highestImpactIssue?.impact !== Impact.Low &&
 				highestImpactIssue?.impact !== Impact.Critical &&
 				highestImpactIssue?.impact !== Impact.High &&
 				highestImpactIssue?.impact !== Impact.Medium
@@ -46,6 +51,7 @@ const getHighestImpactIssue = ({ issues }: IOptions): IReturn => {
 
 			if (
 				issueImpact === Impact.Informational &&
+				highestImpactIssue?.impact !== Impact.Informational &&
 				highestImpactIssue?.impact !== Impact.Critical &&
 				highestImpactIssue?.impact !== Impact.High &&
 				highestImpactIssue?.impact !== Impact.Medium &&
