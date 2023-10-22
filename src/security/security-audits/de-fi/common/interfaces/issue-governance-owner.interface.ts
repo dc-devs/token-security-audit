@@ -1,7 +1,7 @@
 interface IIssueGovernanceOwner {
 	type: string;
 	owner: string;
-	timeLockDelay: number;
+	timelockDelay: number | null;
 }
 
 export { IIssueGovernanceOwner };

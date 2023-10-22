@@ -1,10 +1,14 @@
-import { IIssue } from '../../../src/security/security-audits/de-fi/common/interfaces/issue.interface';
+import { IIssue } from '../../../src/security/security-audits/de-fi/common/interfaces';
+import {
+	Impact,
+	Confidence,
+} from '../../../src/security/security-audits/de-fi/common/enums';
 
 const isssuesLowToHighImpact: IIssue[] = [
 	{
 		id: 95775904,
-		confidence: 'High',
-		impact: 'Informational',
+		confidence: Confidence.High,
+		impact: Impact.Informational,
 		description:
 			'whitelisted function: BETETF.transferFrom(address,address,uint256) (BETETF.sol#538-544)\n\t- in internal call: BETETF._transfer(address,address,uint256) (BETETF.sol#546-577)\n\t\t- in expression ! isDividendExempt[sender]\n',
 		start: 538,
@@ -16,8 +20,8 @@ const isssuesLowToHighImpact: IIssue[] = [
 	},
 	{
 		id: 95775903,
-		confidence: 'High',
-		impact: 'Low',
+		confidence: Confidence.High,
+		impact: Impact.Low,
 		description:
 			'whitelisted function: BETETF.transfer(address,uint256) (BETETF.sol#534-536)\n\t- in internal call: BETETF._transfer(address,address,uint256) (BETETF.sol#546-577)\n\t\t- in expression ! isDividendExempt[sender]\n',
 		start: 534,
@@ -29,8 +33,8 @@ const isssuesLowToHighImpact: IIssue[] = [
 	},
 	{
 		id: 95775904,
-		confidence: 'High',
-		impact: 'Medium',
+		confidence: Confidence.High,
+		impact: Impact.Medium,
 		description:
 			'whitelisted function: BETETF.transferFrom(address,address,uint256) (BETETF.sol#538-544)\n\t- in internal call: BETETF._transfer(address,address,uint256) (BETETF.sol#546-577)\n\t\t- in expression ! isDividendExempt[sender]\n',
 		start: 538,
@@ -42,8 +46,8 @@ const isssuesLowToHighImpact: IIssue[] = [
 	},
 	{
 		id: 95775904,
-		confidence: 'High',
-		impact: 'High',
+		confidence: Confidence.High,
+		impact: Impact.High,
 		description:
 			'whitelisted function: BETETF.transferFrom(address,address,uint256) (BETETF.sol#538-544)\n\t- in internal call: BETETF._transfer(address,address,uint256) (BETETF.sol#546-577)\n\t\t- in expression ! isDividendExempt[sender]\n',
 		start: 538,
@@ -55,8 +59,8 @@ const isssuesLowToHighImpact: IIssue[] = [
 	},
 	{
 		id: 95775904,
-		confidence: 'High',
-		impact: 'Critical',
+		confidence: Confidence.High,
+		impact: Impact.Critical,
 		description:
 			'whitelisted function: BETETF.transferFrom(address,address,uint256) (BETETF.sol#538-544)\n\t- in internal call: BETETF._transfer(address,address,uint256) (BETETF.sol#546-577)\n\t\t- in expression ! isDividendExempt[sender]\n',
 		start: 538,

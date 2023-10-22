@@ -1,7 +1,7 @@
 import { IIssue } from './issue.interface';
 import { IContract } from '../../../../common/interfaces';
 
-interface ICustomDataStrategiesOptions {
+interface ICustomAuditStrategiesOptions {
 	[key: string]: ({
 		key,
 		issues,
@@ -13,4 +13,4 @@ interface ICustomDataStrategiesOptions {
 	}) => void;
 }
 
-export { ICustomDataStrategiesOptions };
+export { ICustomAuditStrategiesOptions };

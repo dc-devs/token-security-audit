@@ -1,11 +1,7 @@
 import { getHighestImpactIssue } from '../../common/utils';
-import { ICustomDataStrategyOptions } from '../../common/interfaces';
+import { IAuditStrategyOptions } from '../../common/interfaces';
 
-const hasTransferLimit = ({
-	key,
-	issues,
-	contract,
-}: ICustomDataStrategyOptions) => {
+const hasTransferLimit = ({ key, issues, contract }: IAuditStrategyOptions) => {
 	// Get Transfer Fees
 	let highestUpperTransferLimit = 0;
 	let highestLowerTransferLimit = 0;

@@ -1,7 +1,8 @@
 import { IIssueGovernanceOwner } from './issue-governance-owner.interface';
 
 interface IIssueGovernance {
-	Owner: IIssueGovernanceOwner;
+	owner?: IIssueGovernanceOwner;
+	owners?: IIssueGovernanceOwner[];
 	worstOwner: IIssueGovernanceOwner;
 }
 

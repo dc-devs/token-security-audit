@@ -1,11 +1,7 @@
 import { getHighestImpactIssue } from '../../common/utils';
-import { ICustomDataStrategyOptions } from '../../common/interfaces';
+import { IAuditStrategyOptions } from '../../common/interfaces';
 
-const hasTransferFee = ({
-	key,
-	issues,
-	contract,
-}: ICustomDataStrategyOptions) => {
+const hasTransferFee = ({ key, issues, contract }: IAuditStrategyOptions) => {
 	// Get Transfer Fees
 	let highestTransferFee = 0;
 	let modifiable = false;

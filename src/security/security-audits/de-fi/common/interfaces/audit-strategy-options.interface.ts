@@ -1,10 +1,10 @@
 import { IIssue } from './issue.interface';
 import { IContract } from '../../../../common/interfaces';
 
-interface ICustomDataStrategyOptions {
+interface IAuditStrategyOptions {
 	key: string;
 	issues: IIssue[];
 	contract: IContract;
 }
 
-export { ICustomDataStrategyOptions };
+export { IAuditStrategyOptions };

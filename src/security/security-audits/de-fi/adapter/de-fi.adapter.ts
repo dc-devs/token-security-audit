@@ -1,7 +1,7 @@
 import { ICoreIssue } from '../common/interfaces';
-import { getHighestImpactIssue } from '../common/utils';
 import { coreIssueIdNameMap } from '../common/constants';
 import { ISecurityAudit } from '../../../common/interfaces';
+import { defaultAuditStrategy } from './default-audit-strategy';
 import { customAuditStrategies } from './custom-audit-strategies';
 import { generateDefaultSecurityAudit } from '../../../common/utils';
 
@@ -17,7 +17,6 @@ const deFiAdapter = ({ response }: IOptions): ISecurityAudit => {
 	if (Array.isArray(coreIssues)) {
 		coreIssues.forEach((coreIssue: ICoreIssue) => {
 			const { scwId, issues } = coreIssue;
-			const hasIssues = issues.length > 0;
 			const key = coreIssueIdNameMap[scwId];
 			const customAuditStrategy = customAuditStrategies[key];
 
@@ -32,18 +31,11 @@ const deFiAdapter = ({ response }: IOptions): ISecurityAudit => {
 					contract: adaptedSecurityAudit.contract,
 				});
 			} else {
-				const highestImpactIssue = getHighestImpactIssue({
+				defaultAuditStrategy({
+					key,
 					issues,
+					contract: adaptedSecurityAudit.contract,
 				});
-
-				adaptedSecurityAudit.contract[key] = {
-					result: hasIssues,
-					value: null,
-					impact: highestImpactIssue?.impact || null,
-					confidence: highestImpactIssue?.confidence || null,
-					modifiable: null,
-					deFiIssues: issues,
-				};
 			}
 		});
 	}
