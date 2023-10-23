@@ -10,16 +10,18 @@ const hasBlacklist = ({ key, issues, contract }: IAuditStrategyOptions) => {
 	});
 
 	if (highestImpactIssue) {
-		const values = JSON.parse(highestImpactIssue?.data)
-			.privileged as IValue[];
+		const values = JSON.parse(highestImpactIssue?.data);
+
+		// getIsModifiable
+		if (values?.privileged) {
+			values.privileged.forEach((value: IValue) => {
+				if (value?.modifiable === true) {
+					modifiable = value?.modifiable;
+				}
+			});
+		}
 
 		value = values;
-
-		values.forEach((value) => {
-			if (value?.modifiable === true) {
-				modifiable = value?.modifiable;
-			}
-		});
 	}
 
 	if (hasIssues) {
@@ -29,15 +31,6 @@ const hasBlacklist = ({ key, issues, contract }: IAuditStrategyOptions) => {
 			impact: highestImpactIssue?.impact || null,
 			confidence: highestImpactIssue?.confidence || null,
 			modifiable,
-			deFiIssues: issues,
-		};
-	} else {
-		contract[key] = {
-			result: false,
-			value: null,
-			impact: null,
-			confidence: null,
-			modifiable: null,
 			deFiIssues: issues,
 		};
 	}

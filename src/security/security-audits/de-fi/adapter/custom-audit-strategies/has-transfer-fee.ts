@@ -1,45 +1,67 @@
 import { getHighestImpactIssue } from '../../common/utils';
-import { IAuditStrategyOptions } from '../../common/interfaces';
+import { IValue, IAuditStrategyOptions } from '../../common/interfaces';
 
 const hasTransferFee = ({ key, issues, contract }: IAuditStrategyOptions) => {
-	// Get Transfer Fees
-	let highestTransferFee = 0;
+	let value: IValue[] | null = null;
 	let modifiable = false;
+	const hasIssues = issues.length > 0;
 	const highestImpactIssue = getHighestImpactIssue({
 		issues,
 	});
 
-	const transferFeeDatas = issues.map((issue) => {
-		return JSON.parse(issue.data);
-	});
+	if (highestImpactIssue) {
+		const values = JSON.parse(highestImpactIssue?.data);
 
-	transferFeeDatas.forEach((transferFeeData) => {
-		const transferFees = transferFeeData?.transferFee;
-		const isModifiable = transferFeeData?.modifiable;
-
-		if (Array.isArray(transferFees)) {
-			transferFees.forEach((transferFee: any) => {
-				const currentTransferFee = transferFee?.value;
-
-				if (currentTransferFee > highestTransferFee) {
-					highestTransferFee = currentTransferFee;
+		// getIsModifiable
+		//---------------------
+		if (values?.privileged) {
+			values.privileged.forEach((value: IValue) => {
+				if (value?.modifiable === true) {
+					modifiable = value?.modifiable;
 				}
 			});
 		}
 
-		if (isModifiable) {
-			modifiable = isModifiable;
+		if (values.modifiable) {
+			modifiable = values.modifiable;
 		}
-	});
+		//---------------------
 
-	contract[key] = {
-		result: true,
-		value: highestTransferFee,
-		impact: highestImpactIssue?.impact || null,
-		confidence: highestImpactIssue?.confidence || null,
-		modifiable,
-		deFiIssues: issues,
-	};
+		// get transferFees
+		//---------------------
+		const buyerTranferFeeData = values.transferFee.find(
+			(transferFee: { value: number; variable: string }) => {
+				return (transferFee.variable = 'buyFee');
+			},
+		);
+		const sellerTranferFeeData = values.transferFee.find(
+			(transferFee: { value: number; variable: string }) => {
+				return (transferFee.variable = 'sellerFee');
+			},
+		);
+		//---------------------
+
+		// Update values
+		//---------------------
+		values.transferFee = {
+			buyer: buyerTranferFeeData.value,
+			seller: sellerTranferFeeData.value,
+		};
+
+		value = values;
+		//---------------------
+	}
+
+	if (hasIssues) {
+		contract[key] = {
+			result: true,
+			value,
+			impact: highestImpactIssue?.impact || null,
+			confidence: highestImpactIssue?.confidence || null,
+			modifiable,
+			deFiIssues: issues,
+		};
+	}
 };
 
 export { hasTransferFee };

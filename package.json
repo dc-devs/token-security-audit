@@ -1,6 +1,5 @@
 {
 	"name": "crypto-trading-bot",
-	"module": "index.ts",
 	"scripts": {
 		"test": "jest",
 		"start": "bun src/start.ts",

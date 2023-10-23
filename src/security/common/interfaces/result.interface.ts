@@ -12,7 +12,7 @@ interface IResult {
 		| IValue
 		| IValue[];
 	result: boolean | null;
-	value: Record<string, unknown> | number | IValue | IValue[] | null;
+	value: Record<string, unknown> | string | number | IValue | IValue[] | null;
 	modifiable: boolean | null;
 	impact: Impact | null;
 	confidence: Confidence | null;
