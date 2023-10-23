@@ -20,10 +20,6 @@ const deFiAdapter = ({ response }: IOptions): ISecurityAudit => {
 			const key = coreIssueIdNameMap[scwId];
 			const customAuditStrategy = customAuditStrategies[key];
 
-			// Additional value modifiacation here:
-			// buy tax,
-			// sell tax,
-			// transfer amount etc..
 			if (customAuditStrategy) {
 				customAuditStrategy({
 					key,

@@ -65,12 +65,6 @@ class Security {
 		});
 		const deFiSecurityAudit = await this.runDeFiSecurityAudit({ address });
 
-		Object.keys(deFiSecurityAudit).forEach((key) => {
-			const value = deFiSecurityAudit[key];
-
-			console.log(key, value);
-		});
-
 		const finalSecurityAudit = this.mergeSecurityAudits({
 			deFi: deFiSecurityAudit,
 			goPlus: goPlusSecurityAudit,
@@ -86,23 +80,23 @@ class Security {
 	}
 
 	displayResults() {
-		// const mergedResults = {
-		// 	token: this.finalSecurityAudit?.token,
-		// 	purchase: this.finalAnalysis?.purchase,
-		// 	owner: this.finalSecurityAudit?.owner,
-		// 	creator: this.finalSecurityAudit?.creator,
-		// 	dexData: this.finalSecurityAudit?.dexData,
-		// 	liquidityProvider: this.finalSecurityAudit?.liquidityProvider,
-		// 	holders: this.finalSecurityAudit?.holders,
-		// 	other: this.finalSecurityAudit?.other,
-		// 	// risk: this.finalAnalysis?.risk,
-		// };
-		// console.log(mergedResults);
-		// console.log('risk', this.finalAnalysis.risk);
-		// Object.keys(this.finalAnalysis).forEach((key) => {
-		// 	const value = this.finalAnalysis[key];
-		// 	console.log(key, value);
-		// });
+		const mergedResults = {
+			token: this.finalSecurityAudit?.token,
+			purchase: this.finalAnalysis?.purchase,
+			owner: this.finalSecurityAudit?.owner,
+			creator: this.finalSecurityAudit?.creator,
+			dexData: this.finalSecurityAudit?.dexData,
+			liquidityProvider: this.finalSecurityAudit?.liquidityProvider,
+			holders: this.finalSecurityAudit?.holders,
+			other: this.finalSecurityAudit?.other,
+			// risk: this.finalAnalysis?.risk,
+		};
+		console.log(mergedResults);
+		console.log('risk', this.finalAnalysis.risk);
+		Object.keys(this.finalAnalysis).forEach((key) => {
+			const value = this.finalAnalysis[key];
+			console.log(key, value);
+		});
 	}
 }
 

@@ -5,8 +5,6 @@ interface IOptions {
 }
 
 // LEFT OFF
-// Fix Type Errorrs on iResultls
-// Add customStrategy for Buy/Sell tax
 // Then add this is customStrategy to Analysis
 const goPlusAdapter = ({ securityResults }: IOptions): ISecurityAudit => {
 	let adaptedSecurityAudit = generateDefaultSecurityAudit();
@@ -100,6 +98,8 @@ const goPlusAdapter = ({ securityResults }: IOptions): ISecurityAudit => {
 	adaptedSecurityAudit.contract.isContractOpenSource = {
 		result: is_open_source === '1',
 		value: null,
+		impact: null,
+		confidence: null,
 		modifiable: null,
 		deFiIssues: [],
 	};
@@ -107,6 +107,8 @@ const goPlusAdapter = ({ securityResults }: IOptions): ISecurityAudit => {
 	adaptedSecurityAudit.contract.isHoneyPot = {
 		result: is_honeypot === '1',
 		value: null,
+		impact: null,
+		confidence: null,
 		modifiable: null,
 		deFiIssues: [],
 	};
@@ -114,6 +116,8 @@ const goPlusAdapter = ({ securityResults }: IOptions): ISecurityAudit => {
 	adaptedSecurityAudit.contract.isHoneyPotWithSameCreator = {
 		result: honeypot_with_same_creator === '1',
 		value: null,
+		impact: null,
+		confidence: null,
 		modifiable: null,
 		deFiIssues: [],
 	};
@@ -121,6 +125,8 @@ const goPlusAdapter = ({ securityResults }: IOptions): ISecurityAudit => {
 	adaptedSecurityAudit.contract.buyTax = {
 		result: buy_tax !== '0',
 		value: Number(buy_tax),
+		impact: null,
+		confidence: null,
 		modifiable: null,
 		deFiIssues: [],
 	};
@@ -128,6 +134,8 @@ const goPlusAdapter = ({ securityResults }: IOptions): ISecurityAudit => {
 	adaptedSecurityAudit.contract.sellTax = {
 		result: sell_tax !== '0',
 		value: Number(sell_tax),
+		impact: null,
+		confidence: null,
 		modifiable: null,
 		deFiIssues: [],
 	};
@@ -135,6 +143,8 @@ const goPlusAdapter = ({ securityResults }: IOptions): ISecurityAudit => {
 	adaptedSecurityAudit.contract.hasProxyContract = {
 		result: is_proxy === '1',
 		value: null,
+		impact: null,
+		confidence: null,
 		modifiable: null,
 		deFiIssues: [],
 	};
@@ -142,6 +152,8 @@ const goPlusAdapter = ({ securityResults }: IOptions): ISecurityAudit => {
 	adaptedSecurityAudit.contract.isMintable = {
 		result: is_mintable === '1',
 		value: null,
+		impact: null,
+		confidence: null,
 		modifiable: null,
 		deFiIssues: [],
 	};
@@ -149,6 +161,8 @@ const goPlusAdapter = ({ securityResults }: IOptions): ISecurityAudit => {
 	adaptedSecurityAudit.contract.canRetrieveOwnership = {
 		result: can_take_back_ownership === '1',
 		value: null,
+		impact: null,
+		confidence: null,
 		modifiable: null,
 		deFiIssues: [],
 	};
@@ -156,6 +170,8 @@ const goPlusAdapter = ({ securityResults }: IOptions): ISecurityAudit => {
 	adaptedSecurityAudit.contract.isBuyingAvailable = {
 		result: cannot_buy === '1',
 		value: null,
+		impact: null,
+		confidence: null,
 		modifiable: null,
 		deFiIssues: [],
 	};
@@ -163,6 +179,8 @@ const goPlusAdapter = ({ securityResults }: IOptions): ISecurityAudit => {
 	adaptedSecurityAudit.contract.canUserSellAll = {
 		result: cannot_sell_all === '1',
 		value: null,
+		impact: null,
+		confidence: null,
 		modifiable: null,
 		deFiIssues: [],
 	};
@@ -170,6 +188,8 @@ const goPlusAdapter = ({ securityResults }: IOptions): ISecurityAudit => {
 	adaptedSecurityAudit.contract.canTaxBeModdified = {
 		result: slippage_modifiable === '1',
 		value: null,
+		impact: null,
+		confidence: null,
 		modifiable: null,
 		deFiIssues: [],
 	};
@@ -177,6 +197,8 @@ const goPlusAdapter = ({ securityResults }: IOptions): ISecurityAudit => {
 	adaptedSecurityAudit.contract.canUserTaxBeModified = {
 		result: personal_slippage_modifiable === '1',
 		value: null,
+		impact: null,
+		confidence: null,
 		modifiable: null,
 		deFiIssues: [],
 	};
@@ -184,6 +206,8 @@ const goPlusAdapter = ({ securityResults }: IOptions): ISecurityAudit => {
 	adaptedSecurityAudit.contract.isTransferPausable = {
 		result: transfer_pausable === '1',
 		value: null,
+		impact: null,
+		confidence: null,
 		modifiable: null,
 		deFiIssues: [],
 	};
@@ -191,6 +215,8 @@ const goPlusAdapter = ({ securityResults }: IOptions): ISecurityAudit => {
 	adaptedSecurityAudit.contract.hasBlacklist = {
 		result: is_blacklisted === '1',
 		value: null,
+		impact: null,
+		confidence: null,
 		modifiable: null,
 		deFiIssues: [],
 	};
@@ -198,6 +224,8 @@ const goPlusAdapter = ({ securityResults }: IOptions): ISecurityAudit => {
 	adaptedSecurityAudit.contract.canWalletsBeWhitelisted = {
 		result: is_whitelisted === '1',
 		value: null,
+		impact: null,
+		confidence: null,
 		modifiable: null,
 		deFiIssues: [],
 	};
@@ -205,6 +233,8 @@ const goPlusAdapter = ({ securityResults }: IOptions): ISecurityAudit => {
 	adaptedSecurityAudit.contract.isAntiWhale = {
 		result: is_anti_whale === '1',
 		value: null,
+		impact: null,
+		confidence: null,
 		modifiable: null,
 		deFiIssues: [],
 	};
@@ -212,6 +242,8 @@ const goPlusAdapter = ({ securityResults }: IOptions): ISecurityAudit => {
 	adaptedSecurityAudit.contract.isAntiWhaleModifiable = {
 		result: anti_whale_modifiable === '1',
 		value: null,
+		impact: null,
+		confidence: null,
 		modifiable: null,
 		deFiIssues: [],
 	};
@@ -219,6 +251,8 @@ const goPlusAdapter = ({ securityResults }: IOptions): ISecurityAudit => {
 	adaptedSecurityAudit.contract.hasTradingCoolDown = {
 		result: trading_cooldown === '1',
 		value: null,
+		impact: null,
+		confidence: null,
 		modifiable: null,
 		deFiIssues: [],
 	};
@@ -226,6 +260,8 @@ const goPlusAdapter = ({ securityResults }: IOptions): ISecurityAudit => {
 	adaptedSecurityAudit.contract.isTrueToken = {
 		result: is_true_token === '1',
 		value: null,
+		impact: null,
+		confidence: null,
 		modifiable: null,
 		deFiIssues: [],
 	};
@@ -233,6 +269,8 @@ const goPlusAdapter = ({ securityResults }: IOptions): ISecurityAudit => {
 	adaptedSecurityAudit.contract.isAirdropScam = {
 		result: is_airdrop_scam === '1',
 		value: null,
+		impact: null,
+		confidence: null,
 		modifiable: null,
 		deFiIssues: [],
 	};
@@ -240,6 +278,8 @@ const goPlusAdapter = ({ securityResults }: IOptions): ISecurityAudit => {
 	adaptedSecurityAudit.contract.isOnTrustList = {
 		result: trust_list === '1',
 		value: null,
+		impact: null,
+		confidence: null,
 		modifiable: null,
 		deFiIssues: [],
 	};
@@ -247,6 +287,8 @@ const goPlusAdapter = ({ securityResults }: IOptions): ISecurityAudit => {
 	adaptedSecurityAudit.contract.hasExternalCalls = {
 		result: external_call === '1',
 		value: null,
+		impact: null,
+		confidence: null,
 		modifiable: null,
 		deFiIssues: [],
 	};
@@ -254,6 +296,8 @@ const goPlusAdapter = ({ securityResults }: IOptions): ISecurityAudit => {
 	adaptedSecurityAudit.contract.canContractSelfDestruct = {
 		result: selfdestruct === '1',
 		value: null,
+		impact: null,
+		confidence: null,
 		modifiable: null,
 		deFiIssues: [],
 	};
@@ -261,6 +305,8 @@ const goPlusAdapter = ({ securityResults }: IOptions): ISecurityAudit => {
 	adaptedSecurityAudit.contract.hasHiddenOwners = {
 		result: hidden_owner === '1',
 		value: null,
+		impact: null,
+		confidence: null,
 		modifiable: null,
 		deFiIssues: [],
 	};
