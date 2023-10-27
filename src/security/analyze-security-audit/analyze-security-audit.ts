@@ -108,37 +108,16 @@ const analyzeSecurityAudit = ({ securityAudit }: IOptions) => {
 			highCount: 0,
 			mediumCount: 0,
 			lowCount: 0,
-			informationCount: 0,
+			informationalCount: 0,
 			critical: {},
 			high: {},
 			medium: {},
 			low: {},
-			information: {},
+			informational: {},
 		},
 	} as IAnalysis;
 	const { contract } = securityAudit;
 
-	// Left Off:
-	// Maybe run a number of recent scam coins to confirm what that data looks like
-	// Update fields like isContractOpenSource to negative
-	// Turn buy tax into number, and calc tax risk
-
-	// Fields to add:
-	// RugPulll Risk
-	// Dump Risk
-	// Low Liquidity
-	// Honey Pot
-
-	// New Request "liquidityAnalysis":
-	// totalUnlockedPercent
-	// isAdequateLiquidityPresent": false,
-	// isEnoughLiquidityLocked": false,
-	// isCreatorNotContainLiquidity": true,
-	//
-	//
-	// New Request "honeyPot":
-
-	// Initial Orgainization
 	Object.keys(contract).forEach((contractPropName) => {
 		const contractPropValue = contract[contractPropName];
 
@@ -161,20 +140,25 @@ const analyzeSecurityAudit = ({ securityAudit }: IOptions) => {
 			analysis.risk.low[contractPropName] = contractPropValue;
 			analysis.risk.lowCount += 1;
 		}
+
+		if (contractPropValue.impact === Impact.Informational) {
+			analysis.risk.low[contractPropName] = contractPropValue;
+			analysis.risk.informationalCount += 1;
+		}
 	});
 
-	// Custom Orgainization
-	// Buy Tax Risk..
-	if (analysis.risk.criticalCount === 0 && analysis.risk.highCount === 0) {
+	if (analysis.risk.criticalCount > 0 || analysis.risk.highCount > 0) {
+		analysis.purchase.isSafe = false;
+	} else {
 		analysis.purchase.isSafe = true;
 	}
 
 	if (
-		analysis.risk.criticalCount === 0 ||
-		analysis.risk.highCount === 0 ||
-		analysis.risk.mediumCount === 0
+		analysis.risk.criticalCount > 0 ||
+		analysis.risk.highCount > 0 ||
+		analysis.risk.mediumCount > 0
 	) {
-		analysis.purchase.needsManualReview = false;
+		analysis.purchase.needsManualReview = true;
 	}
 
 	return analysis;

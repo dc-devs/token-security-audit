@@ -23,3 +23,12 @@ security.displayResults();
 
 // MEDUSA SAFU
 // bun run securityAudit --address='0x41Baa861237b7B429562bd2eEFa9C190c8E50DFb' --chainId='1'
+
+// New Request "liquidityAnalysis":
+// totalUnlockedPercent
+// isAdequateLiquidityPresent": false,
+// isEnoughLiquidityLocked": false,
+// isCreatorNotContainLiquidity": true,
+//
+//
+// New Request "honeyPot":

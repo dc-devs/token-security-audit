@@ -8,12 +8,12 @@ interface IRisk {
 	highCount: number;
 	mediumCount: number;
 	lowCount: number;
-	informationCount: number;
+	informationalCount: number;
 	critical: Record<string, unknown>;
 	high: Record<string, unknown>;
 	medium: Record<string, unknown>;
 	low: Record<string, unknown>;
-	information: Record<string, unknown>;
+	informational: Record<string, unknown>;
 }
 
 interface IAnalysis {

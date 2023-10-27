@@ -29,7 +29,6 @@ const hasTransferFee = ({ key, issues, contract }: IAuditStrategyOptions) => {
 
 		// get transferFees
 		//---------------------
-		console.log('values.', values);
 		if (values?.transferFee?.find) {
 			const buyerTranferFeeData = values?.transferFee?.find(
 				(transferFee: { value: number; variable: string }) => {

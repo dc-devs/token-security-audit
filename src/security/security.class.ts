@@ -12,8 +12,9 @@ interface IConstructorOptions {
 
 class Security {
 	chainId: string;
-	finalAnalysis: any;
+	finalAnalysis?: IAnalysis;
 	finalSecurityAudit?: ISecurityAudit;
+	finalResults?: Record<string, unknown>;
 
 	constructor({ chainId }: IConstructorOptions) {
 		this.chainId = chainId;
@@ -59,6 +60,28 @@ class Security {
 		return analyzeSecurityAudit({ securityAudit });
 	}
 
+	generateFinalResults({
+		finalAnalysis,
+		finalSecurityAudit,
+	}: {
+		finalAnalysis?: IAnalysis;
+		finalSecurityAudit?: ISecurityAudit;
+	}): Record<string, unknown> {
+		const finalResults = {
+			token: finalSecurityAudit?.token,
+			purchase: finalAnalysis?.purchase,
+			owner: finalSecurityAudit?.owner,
+			creator: finalSecurityAudit?.creator,
+			dexData: finalSecurityAudit?.dexData,
+			liquidityProvider: finalSecurityAudit?.liquidityProvider,
+			holders: finalSecurityAudit?.holders,
+			other: finalSecurityAudit?.other,
+			risk: finalAnalysis?.risk,
+		};
+
+		return finalResults;
+	}
+
 	async start({ address }: { address: string }) {
 		const goPlusSecurityAudit = await this.runGoPlusSecurityAudit({
 			address,
@@ -69,34 +92,32 @@ class Security {
 			deFi: deFiSecurityAudit,
 			goPlus: goPlusSecurityAudit,
 		});
+
 		const finalAnalysis = this.analyzeSecurityAudit({
 			securityAudit: finalSecurityAudit,
 		});
 
+		const finalResults = this.generateFinalResults({
+			finalAnalysis: finalAnalysis,
+			finalSecurityAudit: finalSecurityAudit,
+		});
+
 		this.finalSecurityAudit = finalSecurityAudit;
 		this.finalAnalysis = finalAnalysis;
+		this.finalResults = finalResults;
 
-		return finalSecurityAudit;
+		return finalResults;
 	}
 
 	displayResults() {
-		const mergedResults = {
-			token: this.finalSecurityAudit?.token,
-			purchase: this.finalAnalysis?.purchase,
-			owner: this.finalSecurityAudit?.owner,
-			creator: this.finalSecurityAudit?.creator,
-			dexData: this.finalSecurityAudit?.dexData,
-			liquidityProvider: this.finalSecurityAudit?.liquidityProvider,
-			holders: this.finalSecurityAudit?.holders,
-			other: this.finalSecurityAudit?.other,
-			// risk: this.finalAnalysis?.risk,
-		};
-		console.log(mergedResults);
-		console.log('risk', this.finalAnalysis.risk);
-		Object.keys(this.finalAnalysis).forEach((key) => {
-			const value = this.finalAnalysis[key];
-			console.log(key, value);
-		});
+		console.log(this.finalResults);
+
+		console.log('');
+		console.log('-----------------');
+		console.log('Detailed Risk');
+		console.log('-----------------');
+		console.log(this.finalAnalysis?.purchase);
+		console.log(this.finalAnalysis?.risk);
 	}
 }
 
