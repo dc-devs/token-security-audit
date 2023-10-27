@@ -29,25 +29,37 @@ const hasTransferFee = ({ key, issues, contract }: IAuditStrategyOptions) => {
 
 		// get transferFees
 		//---------------------
-		const buyerTranferFeeData = values.transferFee.find(
-			(transferFee: { value: number; variable: string }) => {
-				return (transferFee.variable = 'buyFee');
-			},
-		);
-		const sellerTranferFeeData = values.transferFee.find(
-			(transferFee: { value: number; variable: string }) => {
-				return (transferFee.variable = 'sellerFee');
-			},
-		);
-		//---------------------
+		console.log('values.', values);
+		if (values?.transferFee?.find) {
+			const buyerTranferFeeData = values?.transferFee?.find(
+				(transferFee: { value: number; variable: string }) => {
+					return (transferFee.variable = 'buyFee');
+				},
+			);
+
+			if (buyerTranferFeeData) {
+				values.transferFee = {
+					buyer: buyerTranferFeeData.value,
+				};
+			}
+		}
+
+		if (values?.transferFee?.find) {
+			const sellerTranferFeeData = values?.transferFee?.find(
+				(transferFee: { value: number; variable: string }) => {
+					return (transferFee.variable = 'sellerFee');
+				},
+			);
+
+			if (sellerTranferFeeData) {
+				values.transferFee = {
+					seller: sellerTranferFeeData.value,
+				};
+			}
+		}
 
 		// Update values
 		//---------------------
-		values.transferFee = {
-			buyer: buyerTranferFeeData.value,
-			seller: sellerTranferFeeData.value,
-		};
-
 		value = values;
 		//---------------------
 	}

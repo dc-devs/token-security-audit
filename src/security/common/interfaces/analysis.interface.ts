@@ -1,6 +1,6 @@
 interface IPurchase {
-	isSafe: boolean;
-	needsManualReview: boolean;
+	isSafe: boolean | null;
+	needsManualReview: boolean | null;
 }
 
 interface IRisk {
