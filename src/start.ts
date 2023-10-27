@@ -30,7 +30,7 @@ pubSub.on(
 		// TODO: check that one token is weth
 		const newToken = selectNewToken({ token0, token1 });
 
-		await security.runGoPlusSecurityAudit({
+		await security.start({
 			address: newToken.address,
 		});
 
