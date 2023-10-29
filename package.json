@@ -3,7 +3,8 @@
 	"scripts": {
 		"test": "jest",
 		"start": "bun src/start.ts",
-		"tokenPairListener": "bun src/token-pair-tracker/start.ts",
+		"walletTracker": "bun src/wallet-tracker/start.ts",
+		"tokenPairTracker": "bun src/token-pair-tracker/start.ts",
 		"goPlusSecurityAudit": "bun src/security/security-audits/go-plus/start.ts",
 		"deFiSecurityAudit": "bun src/security/security-audits/de-fi/start.ts",
 		"securityAudit": "bun src/security/start.ts"

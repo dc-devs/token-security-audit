@@ -145,6 +145,7 @@ const goPlusAdapter = ({ securityResults }: IOptions): ISecurityAudit => {
 
 	// Dynamic Impact
 	// -----------------
+	// TODO:  Some Values NAN
 	const buyTax = Number(buy_tax);
 	adaptedSecurityAudit.contract.buyTax = {
 		result: buyTax > 0,
