@@ -114,21 +114,40 @@ bun tokenPairTracker
 ```
 
 ### Security Audit
-Run security audit on scam token XBox:
+Run full security audit. Fetches and merges security audit results from all available security audit companies added to app and outputs a final analysis for token address.
+
+```
+bun securityAudit --address=<tokenAddress> --chainId=<chainId>
+```
+
+Example: For scam ERC-20 token $XBOX
 
 ```
 bun securityAudit --address='0x47e4392036b9f5d9db985c76cf9428be0790e9e6' --chainId='1'
 ```
 
+
 #### Security Audit - GoPlus
-Run security audit on scam token XBox, using just the GoPlus security audit tool.
+Run security audit on just GoPlus. This will return the adapted security audit results from just this company's security audit.
+
+```
+bun securityAudit:goPlus --address=<tokenAddress> --chainId=<chainId>
+```
+
+Example: For scam ERC-20 token $XBOX
 
 ```
 bun securityAudit:goPlus --address='0x47e4392036b9f5d9db985c76cf9428be0790e9e6' --chainId='1'
 ```
 
 #### Security Audit - DeFi
-Run security audit on scam token XBox, using just the DeFi security audit tool.
+Run security audit on just DeFi. This will return the adapted security audit results from just this company's security audit.
+
+```
+bun securityAudit:deFi --address=<tokenAddress> --chainId=<chainId>
+```
+
+Example: For scam ERC-20 token $XBOX
 
 ```
 bun securityAudit:deFi --address='0x47e4392036b9f5d9db985c76cf9428be0790e9e6' --chainId='1'
