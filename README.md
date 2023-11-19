@@ -67,8 +67,10 @@ This project holds code for a bot that listens to new token pairs being added to
 
 ### Prerequisites
 
--   Bun: [Install Instructions](https://bun.sh/docs/installation) (homebrew recommended)
--   `.env.local` file
+-   Bun (homebrew install recommended): [Install Instructions](https://bun.sh/docs/installation)
+
+-   `.env.local` file:
+
     Create an [Infura](https://www.infura.io/) account, as well get an API key from [De.fi](de.fi), and add it to your .env.local in root of project.
 
     ```
@@ -80,10 +82,8 @@ This project holds code for a bot that listens to new token pairs being added to
 ### Installation
 
 1.  Clone the repo
-    Note: This clone command seems to be new (vs git clone ..), copied from repolin, haven't used yet..
-
     ```sh
-      gh repo clone dc-devs/crypto-trading-bot
+      git clone dc-devs/crypto-trading-bot
     ```
 
     ```sh
@@ -97,10 +97,10 @@ This project holds code for a bot that listens to new token pairs being added to
 <!-- Usage -->
 
 ## Usage
-Below are the the instructions for kicking off the app as a whole, or for runing each module in the app individually.
+Below are the the instructions for kicking off the app as a whole, as well as for runing each module in the app individually.
 
 ### App
-Runs the below modules in succession and outputs a security audit for each new token pair added to UniSwap's liquidity pool.
+Runs the below modules in succession and outputs a security audit for each new token pair added to a UniSwap liquidity pool.
 
 ```
 bun start
@@ -121,7 +121,7 @@ bun securityAudit --address='0x47e4392036b9f5d9db985c76cf9428be0790e9e6' --chain
 ```
 
 #### Security Audit - GoPlus
-Run security audit on scam token XBox, using just the DeFi security audit tool.
+Run security audit on scam token XBox, using just the GoPlus security audit tool.
 
 ```
 bun securityAudit:goPlus --address='0x47e4392036b9f5d9db985c76cf9428be0790e9e6' --chainId='1'
