@@ -1,15 +1,138 @@
-# crypto-trading-bot
+<!-- README copied from https://raw.githubusercontent.com/othneildrew/Best-README-Template/master/README.md -->
 
-To install dependencies:
+<!-- PROJECT Header -->
+<br />
+<div align="center">
+  <!-- PROJECT LOGO -->
+  <!-- <a href="">
+    <img src="" alt="Logo" width="419" height="128">
+  </a> -->
 
-```bash
-bun install
+  <h1 align="center">
+	  Crypto Trading Bot
+  </h1>
+  <p align="center">
+	Currently just a bot that listens to new token pairs being added to UniSwap liquidity pools and runs a security audit on each new token added, outputting a security analysis on whether the token is safe to buy or not.
+  </p>
+  <br />
+  <a href="https://lucid.app/lucidchart/f3dc82d7-f3ab-4c91-9edb-26982da26ed2/edit?viewport_loc=14%2C-687%2C2219%2C1061%2C0_0&invitationId=inv_687e7557-94f1-4b49-9d4d-e9acef156e0c" target="_blank">Lucid Chart / App Flow</a>
+  ·
+  <a href="https://github.com/dc-devs/crypto-trading-bot/issues" target="_blank">Report Bug</a>
+  ·
+  <a href="https://github.com/dc-devs/crypto-trading-bot/issues" target="_blank">Request Feature</a>
+</div>
+
+<!-- TABLE OF CONTENTS -->
+<br/>
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#useful-links">Useful Links</a></li>
+  </ol>
+</details>
+<br/>
+
+<!-- ABOUT THE PROJECT -->
+
+## About The Project
+
+This project holds code for a bot that listens to new token pairs being added to UniSwap liquidity pools and runs a security audit on each new token added, outputting a security analysis on whether the token is safe to buy or not.
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+### Built With
+
+-   [Bun](https://bun.sh/)
+-   [TypeScript](https://www.typescriptlang.org/)
+-   [Yarn](https://yarnpkg.com/)
+-   [Prettier](https://prettier.io/)
+
+<!-- GETTING STARTED -->
+
+## Getting Started
+
+### Prerequisites
+
+-   Bun: [Install Instructions](https://bun.sh/docs/installation) (homebrew recommended)
+-   `.env.local` file
+    Create an [Infura](https://www.infura.io/) account, as well get an API key from [De.fi](de.fi), and add it to your .env.local in root of project.
+
+    ```
+    INFURA_PROJECT_ID = <Infura Project Id>
+    INFURA_PROJECT_API_SECRET = <Infura API Secret>
+    DEFI_API_KEY = <De.fi API Key>
+    ```
+
+### Installation
+
+1.  Clone the repo
+    Note: This clone command seems to be new (vs git clone ..), copied from repolin, haven't used yet..
+
+    ```sh
+      gh repo clone dc-devs/crypto-trading-bot
+    ```
+
+    ```sh
+      cd crypto-trading-bot
+    ```
+
+2.  Install NPM packages
+    ```sh
+    bun install
+    ```
+<!-- Usage -->
+
+## Usage
+Below are the the instructions for kicking off the app as a whole, or for runing each module in the app individually.
+
+### App
+Runs the below modules in succession and outputs a security audit for each new token pair added to UniSwap's liquidity pool.
+
 ```
-
-To run:
-
-```bash
 bun start
 ```
 
-This project was created using `bun init` in bun v1.0.3. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
+### Token Pair Tracker
+Sets a listener for new token pair liquidity pools created on UniSwap, outputs some basic information about the token pair.
+
+```
+bun tokenPairTracker
+```
+
+### Security Audit
+Run security audit on scam token XBox:
+
+```
+bun securityAudit --address='0x47e4392036b9f5d9db985c76cf9428be0790e9e6' --chainId='1'
+```
+
+#### Security Audit - GoPlus
+Run security audit on scam token XBox, using just the DeFi security audit tool.
+
+```
+bun securityAudit:goPlus --address='0x47e4392036b9f5d9db985c76cf9428be0790e9e6' --chainId='1'
+```
+
+#### Security Audit - DeFi
+Run security audit on scam token XBox, using just the DeFi security audit tool.
+
+```
+bun securityAudit:deFi --address='0x47e4392036b9f5d9db985c76cf9428be0790e9e6' --chainId='1'
+```
+
+### Wallet Tracker
+Not operational, but started writing code to copy trade whale addresses

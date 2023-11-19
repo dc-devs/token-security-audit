@@ -5,8 +5,8 @@
 		"start": "bun src/start.ts",
 		"walletTracker": "bun src/wallet-tracker/start.ts",
 		"tokenPairTracker": "bun src/token-pair-tracker/start.ts",
-		"goPlusSecurityAudit": "bun src/security/security-audits/go-plus/start.ts",
-		"deFiSecurityAudit": "bun src/security/security-audits/de-fi/start.ts",
+		"securityAudit:goPlus": "bun src/security/security-audits/go-plus/start.ts",
+		"securityAudit:deFi": "bun src/security/security-audits/de-fi/start.ts",
 		"securityAudit": "bun src/security/start.ts"
 	},
 	"devDependencies": {
