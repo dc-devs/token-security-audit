@@ -168,6 +168,9 @@ const goPlusAdapter = ({ securityResults }: IOptions): ISecurityAudit => {
 
 	// Critical Impact
 	// --------------------
+
+	// Scam tokens will oftens times not open source their code
+	// hiding nefarious code
 	const isContractOpenSource = is_open_source === '1';
 	adaptedSecurityAudit.contract.isContractOpenSource = {
 		result: isContractOpenSource,
@@ -178,6 +181,7 @@ const goPlusAdapter = ({ securityResults }: IOptions): ISecurityAudit => {
 		deFiIssues: [],
 	};
 
+	// High value signal for honeypot
 	const isHoneyPot = is_honeypot === '1';
 	adaptedSecurityAudit.contract.isHoneyPot = {
 		result: isHoneyPot,
@@ -188,6 +192,7 @@ const goPlusAdapter = ({ securityResults }: IOptions): ISecurityAudit => {
 		deFiIssues: [],
 	};
 
+	// High value signal for honeypot
 	const isHoneyPotWithSameCreator = honeypot_with_same_creator === '1';
 	adaptedSecurityAudit.contract.isHoneyPotWithSameCreator = {
 		result: isHoneyPotWithSameCreator,
@@ -198,6 +203,100 @@ const goPlusAdapter = ({ securityResults }: IOptions): ISecurityAudit => {
 		deFiIssues: [],
 	};
 
+	// High value signal for honeypot
+	const isBuyingAvailable = cannot_buy === '1';
+	adaptedSecurityAudit.contract.isBuyingAvailable = {
+		result: isBuyingAvailable,
+		value: null,
+		impact: isBuyingAvailable ? Impact.Critical : null,
+		confidence: null,
+		modifiable: null,
+		deFiIssues: [],
+	};
+
+	// High value signal for honeypot
+	const canUserSellAll = cannot_sell_all === '1';
+	adaptedSecurityAudit.contract.canUserSellAll = {
+		result: canUserSellAll,
+		value: null,
+		impact: canUserSellAll ? Impact.Critical : null,
+		confidence: null,
+		modifiable: null,
+		deFiIssues: [],
+	};
+
+	// High value signal for honeypot
+	const isTransferPausable = transfer_pausable === '1';
+	adaptedSecurityAudit.contract.isTransferPausable = {
+		result: isTransferPausable,
+		value: null,
+		impact: isTransferPausable ? Impact.Critical : null,
+		confidence: null,
+		modifiable: null,
+		deFiIssues: [],
+	};
+
+	// High value signal for scams
+	const isAirdropScam = is_airdrop_scam === '1';
+	adaptedSecurityAudit.contract.isAirdropScam = {
+		result: isAirdropScam,
+		value: null,
+		impact: isAirdropScam ? Impact.Critical : null,
+		confidence: null,
+		modifiable: null,
+		deFiIssues: [],
+	};
+
+	// High value signal for honeypot
+	const hasExternalCalls = external_call === '1';
+	adaptedSecurityAudit.contract.hasExternalCalls = {
+		result: hasExternalCalls,
+		value: null,
+		impact: hasExternalCalls ? Impact.Critical : null,
+		confidence: null,
+		modifiable: null,
+		deFiIssues: [],
+	};
+
+	// This just seems bad
+	const canContractSelfDestruct = selfdestruct === '1';
+	adaptedSecurityAudit.contract.canContractSelfDestruct = {
+		result: canContractSelfDestruct,
+		value: null,
+		impact: canContractSelfDestruct ? Impact.Critical : null,
+		confidence: null,
+		modifiable: null,
+		deFiIssues: [],
+	};
+
+	// High value signal for scams
+	const hasHiddenOwners = hidden_owner === '1';
+	adaptedSecurityAudit.contract.hasHiddenOwners = {
+		result: hasHiddenOwners,
+		value: null,
+		impact: canContractSelfDestruct ? Impact.Critical : null,
+		confidence: null,
+		modifiable: null,
+		deFiIssues: [],
+	};
+
+	// High Impact
+	// ----------------
+
+	// Legit tokens can retain ownership on first launch
+	// but this is also a signal for scam tokens
+	const canRetrieveOwnership = can_take_back_ownership === '1';
+	adaptedSecurityAudit.contract.canRetrieveOwnership = {
+		result: canRetrieveOwnership,
+		value: null,
+		impact: canRetrieveOwnership ? Impact.High : null,
+		confidence: null,
+		modifiable: null,
+		deFiIssues: [],
+	};
+
+	// Legit tokens can have proxy contracts
+	// but this is also a signal for scam tokens (rug w/ updated token contract)
 	const hasProxyContract = is_proxy === '1';
 	adaptedSecurityAudit.contract.hasProxyContract = {
 		result: hasProxyContract,
@@ -208,8 +307,22 @@ const goPlusAdapter = ({ securityResults }: IOptions): ISecurityAudit => {
 		deFiIssues: [],
 	};
 
+	// Probably worth flagging copy cats
+	const isTrueToken = is_true_token === '1';
+	adaptedSecurityAudit.contract.isTrueToken = {
+		result: isTrueToken,
+		value: null,
+		impact: isTrueToken ? Impact.High : null,
+		confidence: null,
+		modifiable: null,
+		deFiIssues: [],
+	};
+
 	// Medium Impact
 	// ----------------
+
+	// Legit tokens can still mint tokens
+	// Scam tokens might mint tokens
 	const isMintable = is_mintable === '1';
 	adaptedSecurityAudit.contract.isMintable = {
 		result: isMintable,
@@ -220,160 +333,99 @@ const goPlusAdapter = ({ securityResults }: IOptions): ISecurityAudit => {
 		deFiIssues: [],
 	};
 
-	// ------
-
-	adaptedSecurityAudit.contract.canRetrieveOwnership = {
-		result: can_take_back_ownership === '1',
-		value: null,
-		impact: null,
-		confidence: null,
-		modifiable: null,
-		deFiIssues: [],
-	};
-
-	adaptedSecurityAudit.contract.isBuyingAvailable = {
-		result: cannot_buy === '1',
-		value: null,
-		impact: null,
-		confidence: null,
-		modifiable: null,
-		deFiIssues: [],
-	};
-
-	adaptedSecurityAudit.contract.canUserSellAll = {
-		result: cannot_sell_all === '1',
-		value: null,
-		impact: null,
-		confidence: null,
-		modifiable: null,
-		deFiIssues: [],
-	};
-
+	// Legit coins often times start 5% tax, then modify to lower
+	// This one is tough since can be legit, but also can be scam
+	const canTaxBeModdified = slippage_modifiable === '1';
 	adaptedSecurityAudit.contract.canTaxBeModdified = {
-		result: slippage_modifiable === '1',
+		result: canTaxBeModdified,
 		value: null,
-		impact: null,
+		impact: canTaxBeModdified ? Impact.Medium : null,
 		confidence: null,
 		modifiable: null,
 		deFiIssues: [],
 	};
 
+	// Legit coins often times start 5% tax, then modify to lower
+	// This one is tough since can be legit, but also can be scam
+	const canUserTaxBeModified = personal_slippage_modifiable === '1';
 	adaptedSecurityAudit.contract.canUserTaxBeModified = {
-		result: personal_slippage_modifiable === '1',
+		result: canUserTaxBeModified,
 		value: null,
-		impact: null,
+		impact: canUserTaxBeModified ? Impact.Medium : null,
 		confidence: null,
 		modifiable: null,
 		deFiIssues: [],
 	};
 
-	adaptedSecurityAudit.contract.isTransferPausable = {
-		result: transfer_pausable === '1',
-		value: null,
-		impact: null,
-		confidence: null,
-		modifiable: null,
-		deFiIssues: [],
-	};
-
+	// Legit coins can blacklist known bot addresses
+	const hasBlacklist = is_blacklisted === '1';
 	adaptedSecurityAudit.contract.hasBlacklist = {
-		result: is_blacklisted === '1',
+		result: hasBlacklist,
 		value: null,
-		impact: null,
+		impact: hasBlacklist ? Impact.Medium : null,
 		confidence: null,
 		modifiable: null,
 		deFiIssues: [],
 	};
 
+	// Legit coins can whitelist wallet addresses
+	const canWalletsBeWhitelisted = is_whitelisted === '1';
 	adaptedSecurityAudit.contract.canWalletsBeWhitelisted = {
-		result: is_whitelisted === '1',
+		result: canWalletsBeWhitelisted,
 		value: null,
-		impact: null,
+		impact: canWalletsBeWhitelisted ? Impact.Medium : null,
 		confidence: null,
 		modifiable: null,
 		deFiIssues: [],
 	};
 
+	// Legit coins can set anti whale measures when token first launched
+	const isAntiWhale = is_anti_whale === '1';
 	adaptedSecurityAudit.contract.isAntiWhale = {
-		result: is_anti_whale === '1',
+		result: isAntiWhale,
 		value: null,
-		impact: null,
+		impact: isAntiWhale ? Impact.Medium : null,
 		confidence: null,
 		modifiable: null,
 		deFiIssues: [],
 	};
 
+	// Legit coins can set anti whale measures when token first launched
+	const isAntiWhaleModifiable = anti_whale_modifiable === '1';
 	adaptedSecurityAudit.contract.isAntiWhaleModifiable = {
-		result: anti_whale_modifiable === '1',
+		result: isAntiWhaleModifiable,
 		value: null,
-		impact: null,
+		impact: isAntiWhaleModifiable ? Impact.Medium : null,
 		confidence: null,
 		modifiable: null,
 		deFiIssues: [],
 	};
 
+	// Legit coins can set a trading cooldown to avoid rug pulling
+	// by legit wallet addresses
+	const hasTradingCoolDown = trading_cooldown === '1';
 	adaptedSecurityAudit.contract.hasTradingCoolDown = {
-		result: trading_cooldown === '1',
+		result: hasTradingCoolDown,
 		value: null,
-		impact: null,
+		impact: hasTradingCoolDown ? Impact.Medium : null,
 		confidence: null,
 		modifiable: null,
 		deFiIssues: [],
 	};
 
-	adaptedSecurityAudit.contract.isTrueToken = {
-		result: is_true_token === '1',
-		value: null,
-		impact: null,
-		confidence: null,
-		modifiable: null,
-		deFiIssues: [],
-	};
-
-	adaptedSecurityAudit.contract.isAirdropScam = {
-		result: is_airdrop_scam === '1',
-		value: null,
-		impact: null,
-		confidence: null,
-		modifiable: null,
-		deFiIssues: [],
-	};
-
+	// Low Impact
+	// ----------------
+	// Not too sure what this measures exactly*
+	const isOnTrustList = trust_list === '1';
 	adaptedSecurityAudit.contract.isOnTrustList = {
-		result: trust_list === '1',
+		result: isOnTrustList,
 		value: null,
-		impact: null,
+		impact: isOnTrustList ? Impact.Low : null,
 		confidence: null,
 		modifiable: null,
 		deFiIssues: [],
 	};
-
-	adaptedSecurityAudit.contract.hasExternalCalls = {
-		result: external_call === '1',
-		value: null,
-		impact: null,
-		confidence: null,
-		modifiable: null,
-		deFiIssues: [],
-	};
-
-	adaptedSecurityAudit.contract.canContractSelfDestruct = {
-		result: selfdestruct === '1',
-		value: null,
-		impact: null,
-		confidence: null,
-		modifiable: null,
-		deFiIssues: [],
-	};
-
-	adaptedSecurityAudit.contract.hasHiddenOwners = {
-		result: hidden_owner === '1',
-		value: null,
-		impact: null,
-		confidence: null,
-		modifiable: null,
-		deFiIssues: [],
-	};
+	// ------
 
 	return adaptedSecurityAudit;
 };

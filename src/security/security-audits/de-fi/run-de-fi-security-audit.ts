@@ -26,13 +26,6 @@ const runDeFiSecurityAudit = async ({ chainId, address }: IOptions) => {
 			],
 		});
 
-		console.log('');
-		console.log('');
-		console.log('DEFI RESPONSE');
-		console.log(response.data);
-		console.log('');
-		console.log('');
-
 		adaptedSecurityAudit = deFiAdapter({ response });
 	}
 
