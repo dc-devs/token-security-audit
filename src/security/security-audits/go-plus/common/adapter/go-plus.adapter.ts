@@ -175,7 +175,7 @@ const goPlusAdapter = ({ securityResults }: IOptions): ISecurityAudit => {
 	adaptedSecurityAudit.contract.isContractOpenSource = {
 		result: isContractOpenSource,
 		value: null,
-		impact: isContractOpenSource ? Impact.Critical : null,
+		impact: isContractOpenSource ? null : Impact.Critical,
 		confidence: null,
 		modifiable: null,
 		deFiIssues: [],

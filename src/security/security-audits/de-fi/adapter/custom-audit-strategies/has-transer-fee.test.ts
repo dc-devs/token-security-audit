@@ -23,32 +23,31 @@ describe('hasTransferFee', () => {
 		test('should update contract as expected', () => {
 			const { result, value, impact, confidence, modifiable } =
 				contract.hasTransferFee;
-			const expectedValue = value as Record<string, IValue>;
+			const testValue = value as Record<string, IValue>;
+
+			const expectedValue = expect.objectContaining({
+				privileged: expect.arrayContaining([
+					expect.objectContaining({
+						type: 'function',
+						value: 'owner',
+						modifiable: true,
+					}),
+				]),
+				transferFeeLimits: expect.objectContaining({
+					upper: 1,
+					lower: null,
+				}),
+				transferFees: expect.objectContaining({
+					buyer: 0,
+					seller: 0,
+				}),
+			});
 
 			expect(result).toBe(true);
 			expect(impact).toBe(Impact.Critical);
 			expect(confidence).toBe(Confidence.High);
 			expect(modifiable).toBe(true);
-			expect(expectedValue).toEqual(
-				expect.objectContaining({
-					privileged: expect.arrayContaining([
-						expect.objectContaining({
-							type: 'function',
-							value: 'owner',
-							modifiable: true,
-						}),
-					]),
-					transferFeeLimits: expect.objectContaining({
-						upper: 1,
-						lower: null,
-					}),
-					transferFee: expect.objectContaining({
-						buyer: 0,
-						seller: 0,
-					}),
-					modifiable: true,
-				}),
-			);
+			expect(testValue).toEqual(expectedValue);
 		});
 	});
 });
