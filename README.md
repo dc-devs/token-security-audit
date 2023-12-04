@@ -151,6 +151,3 @@ Example: For scam ERC-20 token $XBOX
 ```
 yarn securityAudit:deFi --address='0x47e4392036b9f5d9db985c76cf9428be0790e9e6' --chainId='1'
 ```
-
-### Wallet Tracker
-Not operational, but started writing code to copy trade whale addresses
