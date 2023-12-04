@@ -1,1 +1,1 @@
-export { deFiAdapter } from './de-fi.adapter.ts';
+export { deFiAdapter } from './de-fi.adapter';

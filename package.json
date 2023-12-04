@@ -1,19 +1,22 @@
 {
-	"name": "crypto-trading-bot",
+	"name": "token-security-audit",
 	"scripts": {
-		"test": "jest",
-		"start": "bun src/start.ts",
-		"walletTracker": "bun src/wallet-tracker/start.ts",
-		"tokenPairTracker": "bun src/token-pair-tracker/start.ts",
-		"securityAudit:goPlus": "bun src/security/security-audits/go-plus/start.ts",
-		"securityAudit:deFi": "bun src/security/security-audits/de-fi/start.ts",
-		"securityAudit": "bun src/security/start.ts"
+		"test": "yarn jest",
+		"start": "yarn src/start.ts",
+		"walletTracker": "yarn src/wallet-tracker/start.ts",
+		"tokenPairTracker": "yarn src/token-pair-tracker/start.ts",
+		"securityAudit:goPlus": "yarn src/security/security-audits/go-plus/start.ts",
+		"securityAudit:deFi": "yarn src/security/security-audits/de-fi/start.ts",
+		"securityAudit": "yarn src/security/start.ts"
 	},
 	"devDependencies": {
-		"@types/jest": "^29.5.5",
-		"bun-types": "latest",
+		"@jest/globals": "^29.7.0",
+		"@types/jest": "^29.5.10",
+		"@types/node": "^20.10.3",
 		"jest": "^29.7.0",
-		"prettier": "^3.0.3"
+		"prettier": "^3.0.3",
+		"ts-jest": "^29.1.1",
+		"typescript": "^5.3.2"
 	},
 	"peerDependencies": {
 		"typescript": "^5.0.0"
@@ -21,7 +24,6 @@
 	"dependencies": {
 		"@de-fi/sdk": "^2.1.12",
 		"@goplus/sdk-node": "^1.0.9",
-		"@types/yargs": "^17.0.28",
 		"dotenv": "^16.3.1",
 		"ethers": "^6.7.1"
 	}

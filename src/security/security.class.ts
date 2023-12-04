@@ -119,17 +119,17 @@ class Security {
 		console.log(this.finalAnalysis?.purchase);
 		console.log(this.finalAnalysis?.risk);
 
-		if (this.finalAnalysis?.risk?.critical) {
-			Object.keys(this.finalAnalysis?.risk?.critical).forEach(
-				(criticalIssueName) => {
-					const criticalIssue =
-						this.finalAnalysis?.risk?.critical[criticalIssueName];
+		// if (this.finalAnalysis?.risk?.critical) {
+		// 	Object.keys(this.finalAnalysis?.risk?.critical).forEach(
+		// 		(criticalIssueName) => {
+		// 			const criticalIssue =
+		// 				this.finalAnalysis?.risk?.critical[criticalIssueName];
 
-					console.log(criticalIssue?.value?.privileged);
-					console.log(criticalIssue?.deFiIssues[0].additionalData);
-				},
-			);
-		}
+		// 			console.log(criticalIssue?.value?.privileged);
+		// 			console.log(criticalIssue?.deFiIssues[0].additionalData);
+		// 		},
+		// 	);
+		// }
 	}
 }
 

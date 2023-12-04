@@ -9,7 +9,7 @@
   </a> -->
 
   <h1 align="center">
-	  Crypto Trading Bot
+	  Token Security Audit
   </h1>
   <p align="center">
 	Currently just a bot that listens to new token pairs being added to UniSwap liquidity pools and runs a security audit on each new token added, outputting a security analysis on whether the token is safe to buy or not.
@@ -56,9 +56,8 @@ This project holds code for a bot that listens to new token pairs being added to
 
 ### Built With
 
--   [Bun](https://bun.sh/)
--   [TypeScript](https://www.typescriptlang.org/)
 -   [Yarn](https://yarnpkg.com/)
+-   [TypeScript](https://www.typescriptlang.org/)
 -   [Prettier](https://prettier.io/)
 
 <!-- GETTING STARTED -->
@@ -67,7 +66,7 @@ This project holds code for a bot that listens to new token pairs being added to
 
 ### Prerequisites
 
--   Bun (homebrew install recommended): [Install Instructions](https://bun.sh/docs/installation)
+-  yarn: [Install Instructions](https://classic.yarnpkg.com/en/docs/install#mac-stable)
 
 -   `.env.local` file:
 
@@ -83,16 +82,16 @@ This project holds code for a bot that listens to new token pairs being added to
 
 1.  Clone the repo
     ```sh
-      git clone dc-devs/crypto-trading-bot
+      git clone git@github.com:dc-devs/token-security-audit.git
     ```
 
     ```sh
-      cd crypto-trading-bot
+      cd token-security-audit
     ```
 
 2.  Install NPM packages
     ```sh
-    bun install
+    yarn install
     ```
 <!-- Usage -->
 
@@ -103,27 +102,27 @@ Below are the the instructions for kicking off the app as a whole, as well as fo
 Runs the below modules in succession and outputs a security audit for each new token pair added to a UniSwap liquidity pool.
 
 ```
-bun start
+yarn start
 ```
 
 ### Token Pair Tracker
 Sets a listener for new token pair liquidity pools created on UniSwap, outputs some basic information about the token pair.
 
 ```
-bun tokenPairTracker
+yarn tokenPairTracker
 ```
 
 ### Security Audit
 Run full security audit. Fetches and merges security audit results from all available security audit companies added to app and outputs a final analysis for token address.
 
 ```
-bun securityAudit --address=<tokenAddress> --chainId=<chainId>
+yarn securityAudit --address=<tokenAddress> --chainId=<chainId>
 ```
 
 Example: For scam ERC-20 token $XBOX
 
 ```
-bun securityAudit --address='0x47e4392036b9f5d9db985c76cf9428be0790e9e6' --chainId='1'
+yarn securityAudit --address='0x47e4392036b9f5d9db985c76cf9428be0790e9e6' --chainId='1'
 ```
 
 
@@ -131,26 +130,26 @@ bun securityAudit --address='0x47e4392036b9f5d9db985c76cf9428be0790e9e6' --chain
 Run security audit on just GoPlus. This will return the adapted security audit results from just this company's security audit.
 
 ```
-bun securityAudit:goPlus --address=<tokenAddress> --chainId=<chainId>
+yarn securityAudit:goPlus --address=<tokenAddress> --chainId=<chainId>
 ```
 
 Example: For scam ERC-20 token $XBOX
 
 ```
-bun securityAudit:goPlus --address='0x47e4392036b9f5d9db985c76cf9428be0790e9e6' --chainId='1'
+yarn securityAudit:goPlus --address='0x47e4392036b9f5d9db985c76cf9428be0790e9e6' --chainId='1'
 ```
 
 #### Security Audit - DeFi
 Run security audit on just DeFi. This will return the adapted security audit results from just this company's security audit.
 
 ```
-bun securityAudit:deFi --address=<tokenAddress> --chainId=<chainId>
+yarn securityAudit:deFi --address=<tokenAddress> --chainId=<chainId>
 ```
 
 Example: For scam ERC-20 token $XBOX
 
 ```
-bun securityAudit:deFi --address='0x47e4392036b9f5d9db985c76cf9428be0790e9e6' --chainId='1'
+yarn securityAudit:deFi --address='0x47e4392036b9f5d9db985c76cf9428be0790e9e6' --chainId='1'
 ```
 
 ### Wallet Tracker
