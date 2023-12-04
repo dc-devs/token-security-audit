@@ -27,6 +27,8 @@ const runDeFiSecurityAudit = async ({ chainId, address }: IOptions) => {
 		});
 
 		adaptedSecurityAudit = deFiAdapter({ response });
+	} else {
+		throw new Error('DeFi Client failed to initialize');
 	}
 
 	return adaptedSecurityAudit;

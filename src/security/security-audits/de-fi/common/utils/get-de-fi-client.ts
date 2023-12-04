@@ -1,5 +1,6 @@
-import { createClient } from '@de-fi/sdk';
+import 'dotenv/config';
 import { Url, Header } from '../enums';
+import { createClient } from '@de-fi/sdk';
 
 const getDeFiClient = () => {
 	const defiApiKey = process.env.DEFI_API_KEY;

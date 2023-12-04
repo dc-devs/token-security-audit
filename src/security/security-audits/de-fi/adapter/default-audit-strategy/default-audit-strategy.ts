@@ -11,6 +11,15 @@ const defaultAuditStrategy = ({
 		issues,
 	});
 
+	// TODO:// Foundn out there are unamed issues?
+	// One alerting us of a massive liquidity dump..
+	// ^^ Seems post rug..
+	// if (hasIssues && !key) {
+	// 	console.log('key', key);
+
+	// 	console.log(issues[0]);
+	// }
+
 	contract[key] = {
 		result: hasIssues,
 		value: null,

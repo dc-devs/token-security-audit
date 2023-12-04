@@ -11,29 +11,33 @@ const tokenPairTracker = new TokenPairTracker();
 // emits: PubSubEvent.NewTokenPairCreated
 tokenPairTracker.start();
 
+// TODO: DoubleCheck the DeFi api seems like some data points "centralized controls"
+
 pubSub.on(
 	PubSubEvent.NewTokenPairCreated,
 	async ({ token0, token1, reserve0, reserve1, pairAddress }) => {
-		reporter.logTokenPair({
-			token0,
-			token1,
-			reserve0,
-			reserve1,
-			pairAddress,
-		});
+		setTimeout(async () => {
+			reporter.logTokenPair({
+				token0,
+				token1,
+				reserve0,
+				reserve1,
+				pairAddress,
+			});
 
-		// security results
-		const security = new Security({
-			chainId: '1',
-		});
+			// security results
+			const security = new Security({
+				chainId: '1',
+			});
 
-		// TODO: check that one token is weth
-		const newToken = selectNewToken({ token0, token1 });
+			// TODO: check that one token is weth
+			const newToken = selectNewToken({ token0, token1 });
 
-		await security.start({
-			address: newToken.address,
-		});
+			await security.start({
+				address: newToken.address,
+			});
 
-		security.displayResults();
+			security.displayResults();
+		}, 60000);
 	},
 );
