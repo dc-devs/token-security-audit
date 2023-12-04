@@ -1,43 +1,35 @@
-import { Security } from './security';
-import { Reporter } from './reporter';
-import { PubSubEvent } from './common/enums';
-import { pubSub } from './common/util-classes';
-import { selectNewToken } from './common/utils';
-import { TokenPairTracker } from './token-pair-tracker';
+import { getCommandLineArguments } from './common/utils';
+import { Security } from './security/security.class';
 
-const reporter = new Reporter();
-const tokenPairTracker = new TokenPairTracker();
+const cliArgs = getCommandLineArguments();
+const { address, chainId } = cliArgs;
+const security = new Security({ chainId });
 
-// emits: PubSubEvent.NewTokenPairCreated
-tokenPairTracker.start();
+(async () => {
+	await security.start({ address });
+	security.displayResults();
+})();
 
-// TODO: DoubleCheck the DeFi api seems like some data points "centralized controls"
+// HayToken (Scam)
+// yarn securityAudit --address='0xfa3e941d1f6b7b10ed84a0c211bfa8aee907965e' --chainId='1'
 
-pubSub.on(
-	PubSubEvent.NewTokenPairCreated,
-	async ({ token0, token1, reserve0, reserve1, pairAddress }) => {
-		setTimeout(async () => {
-			reporter.logTokenPair({
-				token0,
-				token1,
-				reserve0,
-				reserve1,
-				pairAddress,
-			});
+// XBox (Scam)
+// yarn securityAudit --address='0x47e4392036b9f5d9db985c76cf9428be0790e9e6' --chainId='1'
 
-			// security results
-			const security = new Security({
-				chainId: '1',
-			});
+// KOMPETE (Safe?)
+// yarn securityAudit --address='0x1e0b2992079b620aa13a7c2e7c88d2e1e18e46e9' --chainId='1'
 
-			// TODO: check that one token is weth
-			const newToken = selectNewToken({ token0, token1 });
+// ILLUMIANTI (Safe?)
+// yarn securityAudit --address='0x98e1f56b334438e3f0bde22d92f5bfd746e0631f' --chainId='1'
 
-			await security.start({
-				address: newToken.address,
-			});
+// MEDUSA SAFU
+// yarn securityAudit --address='0x41Baa861237b7B429562bd2eEFa9C190c8E50DFb' --chainId='1'
 
-			security.displayResults();
-		}, 60000);
-	},
-);
+// New Request "liquidityAnalysis":
+// totalUnlockedPercent
+// isAdequateLiquidityPresent": false,
+// isEnoughLiquidityLocked": false,
+// isCreatorNotContainLiquidity": true,
+//
+//
+// New Request "honeyPot":

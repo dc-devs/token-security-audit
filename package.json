@@ -3,12 +3,9 @@
 	"scripts": {
 		"test": "yarn jest",
 		"build": "tsc",
-		"start": "node dist/src/start.js",
-		"walletTracker": "node dist/src/wallet-tracker/start",
-		"tokenPairTracker": "node dist/src/token-pair-tracker/start",
+		"securityAudit": "node dist/src/start",
 		"securityAudit:goPlus": "node dist/src/security/security-audits/go-plus/start",
-		"securityAudit:deFi": "node dist/src/security/security-audits/de-fi/start",
-		"securityAudit": "node dist/src/security/start"
+		"securityAudit:deFi": "node dist/src/security/security-audits/de-fi/start"
 	},
 	"devDependencies": {
 		"@jest/globals": "^29.7.0",
