@@ -5,9 +5,10 @@ const cliArgs = getCommandLineArguments();
 const { address, chainId } = cliArgs;
 const security = new Security({ chainId });
 
-await security.start({ address });
-
-security.displayResults();
+(async () => {
+	await security.start({ address });
+	security.displayResults();
+})();
 
 // HayToken (Scam)
 // bun run securityAudit --address='0xfa3e941d1f6b7b10ed84a0c211bfa8aee907965e' --chainId='1'
