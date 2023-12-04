@@ -12,14 +12,14 @@
 	  Token Security Audit
   </h1>
   <p align="center">
-	Currently just a bot that listens to new token pairs being added to UniSwap liquidity pools and runs a security audit on each new token added, outputting a security analysis on whether the token is safe to buy or not.
+	Runs security analysis on a token outputting whether the token is safe to buy or not.
   </p>
   <br />
   <a href="https://lucid.app/lucidchart/f3dc82d7-f3ab-4c91-9edb-26982da26ed2/edit?viewport_loc=14%2C-687%2C2219%2C1061%2C0_0&invitationId=inv_687e7557-94f1-4b49-9d4d-e9acef156e0c" target="_blank">Lucid Chart / App Flow</a>
   ·
-  <a href="https://github.com/dc-devs/crypto-trading-bot/issues" target="_blank">Report Bug</a>
+  <a href="https://github.com/dc-devs/token-security-audit/issues" target="_blank">Report Bug</a>
   ·
-  <a href="https://github.com/dc-devs/crypto-trading-bot/issues" target="_blank">Request Feature</a>
+  <a href="https://github.com/dc-devs/token-security-audit/issues" target="_blank">Request Feature</a>
 </div>
 
 <!-- TABLE OF CONTENTS -->
@@ -50,7 +50,7 @@
 
 ## About The Project
 
-This project holds code for a bot that listens to new token pairs being added to UniSwap liquidity pools and runs a security audit on each new token added, outputting a security analysis on whether the token is safe to buy or not.
+Runs security analysis on a token outputting whether the token is safe to buy or not.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
